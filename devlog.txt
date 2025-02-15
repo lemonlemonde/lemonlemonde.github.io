@@ -1,5 +1,0 @@
-==== 1-4-25 ====
-- "Could not resolve dependency ..... @testing-library/react@13.4.0".....
-    - https://github.com/testing-library/react-testing-library/issues/1121
-    --> Issue with new React19, which breaks some dependencies when using 
-"create-react-app". Not yet resolved, so had to downgrade to React 18.
