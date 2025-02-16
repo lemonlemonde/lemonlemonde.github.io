@@ -4,8 +4,7 @@
   "homepage": "https://lemonlemonde.github.io",
   "private": true,
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "npm run build && touch ./out/.nojekyll && gh-pages -d out",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
