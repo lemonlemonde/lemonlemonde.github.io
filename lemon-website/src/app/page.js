@@ -1,8 +1,8 @@
 import Image from "next/image";
-// import React, { useState, useEffect } from "react";
 import { EyeClosed, Eye } from "lucide-react";
 
 export default function Home() {
+
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
       <main className="flex flex-col gap-8 row-start-2 sm:items-start">
@@ -15,11 +15,11 @@ export default function Home() {
 
 
         {/* horizontal blurb */}
-        <div className="flex space-x-10 center">
-          <EyeClosed size={100} />
+        <div className="flex space-x-20 center w-full">
+          <EyeClosed className="w-1/3" size={100} />
 
           {/* bullet points */}
-          <ul className="list-disc space-y-3 font-light">
+          <ul className="list-disc space-y-3 font-light w-1/2">
             <li>Data Engineer @ DoD's NSWC Corona</li>
             <li>B.S. in CS @ USC, 2024</li>
             <p className="text-sm text-gray-300">& Minor in 3D-Animation</p>
@@ -59,6 +59,7 @@ export default function Home() {
 
       </main>
 
+      {/* links to make me look cooler */}
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
