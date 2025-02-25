@@ -15,7 +15,7 @@ export default function ExpCard() {
         const boxElement = boxRef.current
         const curAngle = parseFloat(boxElement.style.getPropertyValue("--angle"))
         var deltaAngle = 25
-        var minDelta = 10
+        var minDelta = 15
         // estimates of where the rectangle corners are...
         // becomes jank when corners become the other extreme (closer to deg 0 and 180, as opposed to 90 and 270)
         // TODO: look at screen width to determine if the angle thresholds should be close to 0/180 or 90/270
@@ -24,7 +24,7 @@ export default function ExpCard() {
         // faster at 90/270 when flatter rectangle
         // larger when smaller dist, so...
         var dist = Math.min(Math.abs(curAngle - 90), Math.abs(curAngle - 270))
-        deltaAngle /= (dist * 0.1)
+        deltaAngle /= (dist * 0.3)
         deltaAngle = Math.min(deltaAngle, minDelta)
 
         const angle = (curAngle + deltaAngle) % 360;
@@ -51,19 +51,18 @@ export default function ExpCard() {
 
     return (
         <div
+            // Smooth gradient change adapted from
+            // https://stackoverflow.com/questions/67150736/tailwind-background-gradient-transition
             ref={boxRef}
-            className="w-full p-10 rounded-2xl rounded-lg border-2 border-[#0000] p-3 [background:padding-box_var(--bg-color),border-box_var(--border-color)] transition-all duration-1000"
-            // hover:border-neutral-200
+            className="w-full p-10 border-2 border-[var(--background)] transition-all duration-500 bg-gradient-to-t from-[#091735] via-[var(--background)] to-[var(--background)] bg-size-200 -bg-pos-10 hover:bg-pos-100"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => router.push("/exp_page")}
-            style={
-                {
-                    "--angle": "0deg",
-                    "--border-color": isHovered ? "linear-gradient(var(--angle), #070707, #687aff)" : "black",
-                    "--bg-color": "linear-gradient(#131219, #131219)",
-                }
-            }
+            style={{
+                "--angle": "0deg",
+                "--border-color": isHovered ? "linear-gradient(var(--angle), #070707, #687aff)" : "transparent",
+                borderImage: "var(--border-color) 1",
+            }}
         >
 
 
