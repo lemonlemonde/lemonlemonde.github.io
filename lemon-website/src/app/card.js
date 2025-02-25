@@ -13,12 +13,12 @@ const Card = ({children, link}) => {
     {/* https://ibelick.com/blog/create-animated-gradient-borders-with-css */ }
     const animateBorder = () => {
         const boxElement = boxRef.current
-        if (!isHoveredRef.current) {
+        if (!isHoveredRef.current || !boxElement) {
             return;
         }
         const curAngle = parseFloat(boxElement.style.getPropertyValue("--angle"))
         var deltaAngle = 25
-        var minDelta = 15
+        var minDelta = 18
         // estimates of where the rectangle corners are...
         // becomes jank when corners become the other extreme (closer to deg 0 and 180, as opposed to 90 and 270)
         // TODO: look at screen width to determine if the angle thresholds should be close to 0/180 or 90/270
@@ -27,12 +27,12 @@ const Card = ({children, link}) => {
         // faster at 90/270 when flatter rectangle
         // larger when smaller dist, so...
         var dist = Math.min(Math.abs(curAngle - 90), Math.abs(curAngle - 270))
-        deltaAngle /= (dist * 0.3)
+        deltaAngle /= (dist * 0.2)
         deltaAngle = Math.min(deltaAngle, minDelta)
 
         const angle = (curAngle + deltaAngle) % 360;
         boxElement.style.setProperty("--angle", `${angle}deg`);
-        console.log("spin")
+        // console.log("spin")
         requestAnimationFrame(animateBorder);
     };
 
@@ -41,10 +41,10 @@ const Card = ({children, link}) => {
         // Start the animation on hover
         isHoveredRef.current = isHovered
         if (isHovered) {
-            console.log("hovering")
+            // console.log("hovering")
             requestAnimationFrame(animateBorder); // Start animation loop
         } else {
-            console.log("no hover")
+            // console.log("no hover")
             boxRef.current.style.setProperty("--angle", "0deg");
         }
     }, [isHovered]); // Re-run effect when hover state changes
@@ -54,7 +54,7 @@ const Card = ({children, link}) => {
             // Smooth gradient change adapted from
             // https://stackoverflow.com/questions/67150736/tailwind-background-gradient-transition
             ref={boxRef}
-            className="w-full p-10 border-2 border-[var(--background)] transition-all duration-500 bg-gradient-to-t from-[#091735] via-[var(--background)] to-[var(--background)] bg-size-200 -bg-pos-10 hover:bg-pos-100"
+            className="w-full p-10 border-2 border-[var(--background)] transition-all duration-500 bg-gradient-to-t from-[#091735] via-[var(--background)] to-[var(--background)] bg-size-200 -bg-pos-10 hover:bg-pos-100 hover:scale-105 cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => router.push(link)}
