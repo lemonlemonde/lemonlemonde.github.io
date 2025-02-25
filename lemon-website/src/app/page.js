@@ -2,19 +2,15 @@ import Image from "next/image";
 import { EyeClosed, Eye } from "lucide-react";
 import Card from "./card";
 import SplineObj from "./spline_obj";
+import Header from "./header";
 
 export default function Home() {
 
   return (
-    
+
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
+      <Header/>
       <main className="flex flex-col gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-        {/* main title */}
-        <div>
-          <h1 className="text-4xl italic">
-            Miru Jun
-          </h1>
-        </div>
 
         {/* some floaty thing */}
         {/* <div className="max-w-screen-sm absolute">
@@ -38,71 +34,71 @@ export default function Home() {
         <Card link={"/exp_page"}>
           {/* job exp */}
           <div>
-                <ul className="list-disc font-extralight max-w-full">
-                    <h2 className="text-2xl font-normal">
-                        [ EXP ]
-                    </h2>
-                    <li><b>2024-Current:</b> Data Engineer @ DoD's NSWC Corona</li>
-                    <li><b>2024-Current:</b> Student Volunteer @ USC's Virtual Human Therapeutics Lab (VHTL)</li>
-                    <li><b>2023-2024:</b> Student Researcher @ USC's Learning and Interactive Robot Autonomy Lab (LiraLab)</li>
+            <ul className="list-disc font-extralight max-w-full">
+              <h2 className="text-2xl font-normal">
+                [ EXP ]
+              </h2>
+              <li><b>2024-Current:</b> Data Engineer @ DoD's NSWC Corona</li>
+              <li><b>2024-Current:</b> Student Volunteer @ USC's Virtual Human Therapeutics Lab (VHTL)</li>
+              <li><b>2023-2024:</b> Student Researcher @ USC's Learning and Interactive Robot Autonomy Lab (LiraLab)</li>
 
 
-                    <li><b>2023-2024:</b> Student Researcher @ USC's Mobile and Environmental Media Lab (MEML)</li>
-                    <div className="flex space-x-6">
-                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
-                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">1st place Time Capsule Challenge (Niantic's 8th Wall)</a>
-                    </div>
+              <li><b>2023-2024:</b> Student Researcher @ USC's Mobile and Environmental Media Lab (MEML)</li>
+              <div className="flex space-x-6">
+                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
+                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">1st place Time Capsule Challenge (Niantic's 8th Wall)</a>
+              </div>
 
-                    <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
-                    <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
-                    <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
-                </ul>
-            </div>
+              <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
+              <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
+              <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
+            </ul>
+          </div>
         </Card>
 
         {/* verticals */}
         <div className="flex w-full space-x-10">
           <Card link={"/proj_page"} className="w-2/3">
-          {/* proj links */}
-          <ul className="list-disc font-extralight w-full">
-            <h2 className="text-2xl font-normal">
-              [ PROJS ]
-            </h2>
+            {/* proj links */}
+            <ul className="list-disc font-extralight w-full">
+              <h2 className="text-2xl font-normal">
+                [ PROJS ]
+              </h2>
 
-            <div className="flex-col">
-              <li>Estuary: Augmented Reality Companion Project</li>
-              <div className="flex space-x-4">
-                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://estuary-ai.github.io/">Website</a>
+              <div className="flex-col">
+                <li>Estuary: Augmented Reality Companion Project</li>
+                <div className="flex space-x-4">
+                  <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://estuary-ai.github.io/">Website</a>
+                </div>
               </div>
-            </div>
-            
 
-            <li>NASA SUITS Challenge 2022-2023</li>
-            <div className="flex space-x-6">
 
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://viterbischool.usc.edu/news/2023/06/usc-students-advance-augmented-reality-for-artemis-astronauts/">USC Article</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=Wjg_yvT7Jo4">USC Video</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=d4mOWeIuvMI">SENVA 2 Product Reel</a>
-            </div>
+              <li>NASA SUITS Challenge 2022-2023</li>
+              <div className="flex space-x-6">
 
-            <li>Help Is On The Way: USC MFA Thesis VR Film</li>
-            <li>Talk2Friends: Android application</li>
-            <li>To The Clouds: 360 VR short video (CTAN 504)</li>
-            <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://youtu.be/B9d9BBz_8V8">YouTube</a>
-          </ul>
+                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://viterbischool.usc.edu/news/2023/06/usc-students-advance-augmented-reality-for-artemis-astronauts/">USC Article</a>
+                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=Wjg_yvT7Jo4">USC Video</a>
+                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=d4mOWeIuvMI">SENVA 2 Product Reel</a>
+              </div>
+
+              <li>Help Is On The Way: USC MFA Thesis VR Film</li>
+              <li>Talk2Friends: Android application</li>
+              <li>To The Clouds: 360 VR short video (CTAN 504)</li>
+              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4 max-w-fit" href="https://youtu.be/B9d9BBz_8V8">YouTube</a>
+            </ul>
           </Card>
 
-          <Card link={"/other_page"}className="w-1/3">
-          {/* Otherwise */}
-          <ul className="list-disc font-extralight w-full">
-            <h2 className="text-2xl font-normal">
-              [ OTHER ]
-            </h2>
-            <li><b>2024:</b> Bloomberg BPuzzled Finalist</li>
-            <li><b>2023:</b> Bloomberg BPuzzled Finalist</li>
-            <li><b>2022-2024:</b> Team Leader @ USC Volunteer Center</li>
-            <li><b>2021-2022:</b> Volunteer @ USC Volunteer Center</li>
-          </ul>
+          <Card link={"/other_page"} className="w-1/3">
+            {/* Otherwise */}
+            <ul className="list-disc font-extralight w-full">
+              <h2 className="text-2xl font-normal">
+                [ OTHER ]
+              </h2>
+              <li><b>2024:</b> Bloomberg BPuzzled Finalist</li>
+              <li><b>2023:</b> Bloomberg BPuzzled Finalist</li>
+              <li><b>2022-2024:</b> Team Leader @ USC Volunteer Center</li>
+              <li><b>2021-2022:</b> Volunteer @ USC Volunteer Center</li>
+            </ul>
           </Card>
 
         </div>
@@ -110,6 +106,7 @@ export default function Home() {
 
 
         {/* publications */}
+        <Card link={"/pub_page"} className="w-full">
         <ul className="list-disc font-extralight w-fit space-y-1">
           <h2 className="text-2xl font-normal">
             [ PUBS ]
@@ -153,11 +150,12 @@ export default function Home() {
             </div>
           </div>
         </ul>
+        </Card>
 
 
       </main>
 
-      {/* links to make me look cooler */}
+      {/* footer links to make me look cooler */}
       <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
         <a
           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
