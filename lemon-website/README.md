@@ -15,3 +15,6 @@ npm run dev
 - React (Next.js)
 - Tailwind CSS
 - Lucide
+oh no the list is getting longer
+- Spline (not yet)
+- Motion
