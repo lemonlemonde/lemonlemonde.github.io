@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { EyeClosed, Eye } from "lucide-react";
-import ExpCard from "./exp_card";
+import Card from "./card";
 import SplineObj from "./spline_obj";
 
 export default function Home() {
@@ -35,12 +35,36 @@ export default function Home() {
         </div>
 
         {/* experience */}
-        <ExpCard/>
+        <Card link={"/exp_page"}>
+          {/* job exp */}
+          <div>
+                <ul className="list-disc font-extralight max-w-full">
+                    <h2 className="text-2xl font-normal">
+                        [ EXP ]
+                    </h2>
+                    <li><b>2024-Current:</b> Data Engineer @ DoD's NSWC Corona</li>
+                    <li><b>2024-Current:</b> Student Volunteer @ USC's Virtual Human Therapeutics Lab (VHTL)</li>
+                    <li><b>2023-2024:</b> Student Researcher @ USC's Learning and Interactive Robot Autonomy Lab (LiraLab)</li>
+
+
+                    <li><b>2023-2024:</b> Student Researcher @ USC's Mobile and Environmental Media Lab (MEML)</li>
+                    <div className="flex space-x-6">
+                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
+                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">1st place Time Capsule Challenge (Niantic's 8th Wall)</a>
+                    </div>
+
+                    <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
+                    <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
+                    <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
+                </ul>
+            </div>
+        </Card>
 
         {/* verticals */}
         <div className="flex w-full space-x-10">
+          <Card link={"/proj_page"} className="w-2/3">
           {/* proj links */}
-          <ul className="list-disc font-extralight w-2/3">
+          <ul className="list-disc font-extralight w-full">
             <h2 className="text-2xl font-normal">
               [ PROJS ]
             </h2>
@@ -51,7 +75,7 @@ export default function Home() {
                 <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://estuary-ai.github.io/">Website</a>
               </div>
             </div>
-
+            
 
             <li>NASA SUITS Challenge 2022-2023</li>
             <div className="flex space-x-6">
@@ -66,9 +90,11 @@ export default function Home() {
             <li>To The Clouds: 360 VR short video (CTAN 504)</li>
             <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://youtu.be/B9d9BBz_8V8">YouTube</a>
           </ul>
+          </Card>
 
+          <Card link={"/other_page"}className="w-1/3">
           {/* Otherwise */}
-          <ul className="list-disc font-extralight w-1/3">
+          <ul className="list-disc font-extralight w-full">
             <h2 className="text-2xl font-normal">
               [ OTHER ]
             </h2>
@@ -77,6 +103,7 @@ export default function Home() {
             <li><b>2022-2024:</b> Team Leader @ USC Volunteer Center</li>
             <li><b>2021-2022:</b> Volunteer @ USC Volunteer Center</li>
           </ul>
+          </Card>
 
         </div>
 

@@ -1,4 +1,4 @@
-export default function ExpCard() {
+export default function ExpPage() {
     return (
         <div>
             hi
