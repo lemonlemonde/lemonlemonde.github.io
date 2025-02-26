@@ -57,7 +57,7 @@ export default function Home() {
         </Card>
 
         {/* verticals */}
-        <div className="flex w-full space-x-10">
+        <div className="flex lg:flex-row flex-col w-full lg:space-x-10 lg:space-y-0 space-y-10 space-x-0">
           <Card link={"/proj_page"} className="w-2/3">
             {/* proj links */}
             <ul className="list-disc font-extralight w-full">
