@@ -42,12 +42,19 @@ export default function Home() {
               </h2>
               <li><b>2024-Current:</b> Data Engineer @ DoD's <InnerLink link={"https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Corona/"} text={"NSWC Corona"}/></li>
               <li><b>2024-Current:</b> Student Volunteer @ USC's <InnerLink link={"https://ict.usc.edu/research/labs-groups/virtual-human-therapeutics-lab/"} text="Virtual Human Therapeutics Lab (VHTL)"/></li>
-              <p>- Accepted to CHI'25</p>
+              <ul className="ml-6 list-disc font-extralight max-w-full">
+                  <li>Accepted to CHI'25, under the guidance of Director Sharon Mozgai!</li>
+              </ul>
+              
               <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://liralab.usc.edu/"} text="Learning and Interactive Robot Autonomy Lab (LiraLab)"/></li>
-              <p>- Published in CoRL'24</p>
-              <p>- Published in HRI'24 HIRL Workshop</p>
+              <ul className="ml-6 list-disc font-extralight max-w-full">
+                  <li>Published in CoRL'24, under the guidance of Professor Erdem Bıyık!</li>
+                  <li>Published in HRI'24 HIRL Workshop, under the guidance of Professor Erdem Bıyık :)</li>
+              </ul>
               <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/></li>
-              <p>- Published in IVA'24</p>
+              <ul className="ml-6 list-disc font-extralight max-w-full">
+                  <li>Published in IVA'24, under the guidance of Professor Scott Fisher</li>
+              </ul>
               <div className="flex space-x-6">
                 <InnerLink link={"https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1"} text={"Website + WebAR link"}/>
                 <InnerLink link={"https://mobilemedia.usc.edu/projects/memory-space-chinatownar/"} text={"Lab Website"}/>
@@ -56,7 +63,9 @@ export default function Home() {
               </div>
 
               <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
-              <p>- Published and presented at RAMS'24</p>
+              <ul className="ml-6 list-disc font-extralight max-w-full">
+                  <li>Published and presented at RAMS'24, under the guidance of mentor Michael Potter!</li>
+              </ul>
               <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
               <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
             </ul>

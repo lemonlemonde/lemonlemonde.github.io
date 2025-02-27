@@ -23,7 +23,7 @@ export default function ExpPage() {
 
                     <li><b>2024-Current:</b> Student Volunteer @ USC's <InnerLink link={"https://ict.usc.edu/research/labs-groups/virtual-human-therapeutics-lab/"} text="Virtual Human Therapeutics Lab (VHTL)"/></li>
                     <ul className="ml-6 list-disc font-extralight max-w-full">
-                        <li>Published to CHI'25, under the guidance of Director Sharon Mozgai!</li>
+                        <li>Accepted to CHI'25, under the guidance of Director Sharon Mozgai!</li>
                     </ul>
 
 
@@ -36,6 +36,9 @@ export default function ExpPage() {
 
 
                     <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/></li>
+                    <ul className="ml-6 list-disc font-extralight max-w-full">
+                        <li>Published in IVA'24, under the guidance of Professor Scott Fisher</li>
+                    </ul>
                     <p className="font-semibold text-xl">Where You Stand: Chinatown</p>
                     <div className="flex space-x-6">
                         <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
@@ -62,8 +65,8 @@ export default function ExpPage() {
                             <p>A closer look (and a dev view) of two of the experiences: Peacock Alley and Sang Yuen Store.</p>
                             <ul className="ml-6 list-disc font-extralight">
                                 <li>Webapp in HTML and JavaScript</li>
-                                <li>WebAR experiences with A-Frame, Niantic's 8th Wall components, and VPS waypoints.</li>
-                                <li>LLM API for conversing with a peacock</li>
+                                <li>WebAR experiences with A-Frame, Niantic's 8th Wall modules, and VPS waypoints.</li>
+                                <li>InWorld API for conversing with a peacock</li>
                                 <li>Places volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
                             </ul>
                         </div>
@@ -71,6 +74,10 @@ export default function ExpPage() {
                     </div>
 
                     <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
+                    <ul className="ml-6 list-disc font-extralight max-w-full">
+                        <li>Published and presented at RAMS'24, under the guidance of mentor Michael Potter!</li>
+                    </ul>
+
                     <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
                     <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
                 </ul>
