@@ -40,17 +40,18 @@ export default function Home() {
               <h2 className="text-2xl font-normal">
                 [ EXP ]
               </h2>
-              <li><b>2024-Current:</b> Data Engineer @ DoD's NSWC Corona</li>
-              <li><b>2024-Current:</b> Student Volunteer @ USC's Virtual Human Therapeutics Lab (VHTL)</li>
+              <li><b>2024-Current:</b> Data Engineer @ DoD's <InnerLink link={"https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Corona/"} text={"NSWC Corona"}/></li>
+              <li><b>2024-Current:</b> Student Volunteer @ USC's <InnerLink link={"https://ict.usc.edu/research/labs-groups/virtual-human-therapeutics-lab/"} text="Virtual Human Therapeutics Lab (VHTL)"/></li>
               <p>- Accepted to CHI'25</p>
-              <li><b>2023-2024:</b> Student Researcher @ USC's Learning and Interactive Robot Autonomy Lab (LiraLab)</li>
+              <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://liralab.usc.edu/"} text="Learning and Interactive Robot Autonomy Lab (LiraLab)"/></li>
               <p>- Published in CoRL'24</p>
               <p>- Published in HRI'24 HIRL Workshop</p>
-              <li><b>2023-2024:</b> Student Researcher @ USC's Mobile and Environmental Media Lab (MEML)</li>
+              <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/></li>
               <p>- Published in IVA'24</p>
               <div className="flex space-x-6">
                 <InnerLink link={"https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1"} text={"Website + WebAR link"}/>
-                <InnerLink link={"https://player.vimeo.com/video/927420930?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"} text={"Vimeo"}/>
+                <InnerLink link={"https://mobilemedia.usc.edu/projects/memory-space-chinatownar/"} text={"Lab Website"}/>
+                <InnerLink link={"https://player.vimeo.com/video/951336252?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=5847"} text={"Vimeo"}/>
                 <InnerLink link={"https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge"} text={"Grand Prize - Time Capsule Challenge (Niantic's 8th Wall)"}/>
               </div>
 
