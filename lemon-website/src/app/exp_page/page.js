@@ -1,25 +1,71 @@
 import Image from "next/image";
-import Header from "../header";
+import Header from "../components/header";
 
 export default function ExpPage() {
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-        
-            <Header/>
-            <main className="flex flex-col gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <ul className="list-disc font-extralight max-w-full">
-                    <h2 className="text-2xl font-normal">
-                        [ EXP ]
-                    </h2>
+
+            <Header />
+            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
+                <h2 className="text-3xl font-normal">
+                    [ EXP ]
+                </h2>
+                <ul className="list-disc font-extralight max-w-full space-y-5">
                     <li><b>2024-Current:</b> Data Engineer @ DoD's NSWC Corona</li>
+                    <ul className="ml-6 list-disc font-extralight max-w-full">
+                        <li>Primarily working with natural language processing (NLP) techniques and ML models across various environments (local, cloud, and air-gapped).</li>
+                        <li>Everything from preprocessing, profiling, exploring, and generating (synthetic) data to establishing pipelines, environments, and endpoints for use cases. </li>
+                        <li>Inevitably contributing to documentation and strategy docs for Navy leadership.</li>
+                        <li>Also working on drone swarm reliability analysis ✈ ✈ 📈</li>
+                    </ul>
+
+
                     <li><b>2024-Current:</b> Student Volunteer @ USC's Virtual Human Therapeutics Lab (VHTL)</li>
+                    <ul className="ml-6 list-disc font-extralight max-w-full">
+                        <li>Published to CHI'25, under the guidance of Director Sharon Mozgai!</li>
+                    </ul>
+
+
                     <li><b>2023-2024:</b> Student Researcher @ USC's Learning and Interactive Robot Autonomy Lab (LiraLab)</li>
+                    <ul className="ml-6 list-disc font-extralight max-w-full">
+                        <li>Published in CoRL'24, under the guidance of Professor Erdem Bıyık!</li>
+                        <li>Published in HRI'24 HIRL Workshop, under the guidance of Professor Erdem Bıyık :)</li>
+                    </ul>
+
 
 
                     <li><b>2023-2024:</b> Student Researcher @ USC's Mobile and Environmental Media Lab (MEML)</li>
+                    <p className="font-semibold text-xl">Where You Stand: Chinatown</p>
                     <div className="flex space-x-6">
                         <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
-                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">1st place Time Capsule Challenge (Niantic's 8th Wall)</a>
+                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">Grand Prize - Time Capsule Challenge (Niantic's 8th Wall)</a>
+
+                    </div>
+                    <div className="flex md:flex-row flex-col">
+                        <iframe src="https://player.vimeo.com/video/927420930?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="fullscreen" title="Memory Space: Chinatown AR"></iframe>
+                        <div className="flex-row">
+                            <p className="p-5">A WebAR experience as part of a temporary exhibition in LA's Union Station. </p>
+                            <p className="p-5">In collaboration with [ Metro Art, The Huntington-USC Institute on California and the West, the Chinese Historical Society of Southern California, and the Huntington Library ].</p>
+                        </div>
+                    </div>
+
+                    <div className="flex md:flex-row flex-col w-full justify-center space-x-5">
+                        {/* ---- screen vids ---- */}
+                        <div className="flex flex-row justify-center space-x-5 w-fit">
+                            <iframe src="https://www.youtube.com/embed/956OxNlEtiM?si=42KT6SGpsSu-UDRY" allow="fullscreen" title="MEML Chinatown - Peacock Test (dev)"/>
+                            <iframe src="https://www.youtube.com/embed/VbYJ1TKyhqo?si=-ETg_DiC7b5yzBDO" allow="fullscreen" title="MEML Chinatown - SangYuen Store Test"/>
+                        </div>
+                        {/* ---- explanation of screen vids ---- */}
+                        <div className="flex flex-col lg:w-2/3 w-fit p-5">
+                            <p>A closer look (and a dev view) of two of the experiences: Peacock Alley and Sang Yuen Store.</p>
+                            <ul className="ml-6 list-disc font-extralight">
+                                <li>Webapp in HTML and JavaScript</li>
+                                <li>WebAR experiences with A-Frame, Niantic's 8th Wall components, and VPS waypoints.</li>
+                                <li>LLM API for conversing with a peacock</li>
+                                <li>Places volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
+                            </ul>
+                        </div>
+
                     </div>
 
                     <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>

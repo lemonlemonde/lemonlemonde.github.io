@@ -1,8 +1,9 @@
 import Image from "next/image";
 import { EyeClosed, Eye } from "lucide-react";
-import Card from "./card";
-import SplineObj from "./spline_obj";
-import Header from "./header";
+import Card from "./components/card";
+import SplineObj from "./components/spline_obj";
+import Header from "./components/header";
+import InnerLink from "./components/inner_link";
 
 export default function Home() {
 
@@ -19,13 +20,14 @@ export default function Home() {
 
         {/* horizontal blurb */}
         <div className="flex space-x-14 center w-full">
-          <EyeClosed className="w-1/3 center" size={100} />
+          <EyeClosed className="w-1/3 center animate-pulse" size={100} />
 
           {/* bullet points */}
           <ul className="list-disc space-y-3 font-light w-1/2">
             <li>Data Engineer @ DoD's NSWC Corona</li>
             <li>B.S. in CS @ USC, 2024</li>
             <p className="text-sm text-gray-300">& Minor in 3D-Animation</p>
+            <li>Active T3 Secret Clearance granted January 2024</li>
             <li>Trying to be happy and fulfilled and cool</li>
           </ul>
         </div>
@@ -40,16 +42,20 @@ export default function Home() {
               </h2>
               <li><b>2024-Current:</b> Data Engineer @ DoD's NSWC Corona</li>
               <li><b>2024-Current:</b> Student Volunteer @ USC's Virtual Human Therapeutics Lab (VHTL)</li>
+              <p>- Accepted to CHI'25</p>
               <li><b>2023-2024:</b> Student Researcher @ USC's Learning and Interactive Robot Autonomy Lab (LiraLab)</li>
-
-
+              <p>- Published in CoRL'24</p>
+              <p>- Published in HRI'24 HIRL Workshop</p>
               <li><b>2023-2024:</b> Student Researcher @ USC's Mobile and Environmental Media Lab (MEML)</li>
+              <p>- Published in IVA'24</p>
               <div className="flex space-x-6">
-                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
-                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">1st place Time Capsule Challenge (Niantic's 8th Wall)</a>
+                <InnerLink link={"https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1"} text={"Website + WebAR link"}/>
+                <InnerLink link={"https://player.vimeo.com/video/927420930?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"} text={"Vimeo"}/>
+                <InnerLink link={"https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge"} text={"Grand Prize - Time Capsule Challenge (Niantic's 8th Wall)"}/>
               </div>
 
               <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
+              <p>- Published and presented at RAMS'24</p>
               <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
               <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
             </ul>
@@ -68,23 +74,22 @@ export default function Home() {
               <div className="flex-col">
                 <li>Estuary: Augmented Reality Companion Project</li>
                 <div className="flex space-x-4">
-                  <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://estuary-ai.github.io/">Website</a>
+                  <InnerLink link={"https://estuary-ai.github.io/"} text={"Website"}/>
                 </div>
               </div>
 
 
               <li>NASA SUITS Challenge 2022-2023</li>
               <div className="flex space-x-6">
-
-                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://viterbischool.usc.edu/news/2023/06/usc-students-advance-augmented-reality-for-artemis-astronauts/">USC Article</a>
-                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=Wjg_yvT7Jo4">USC Video</a>
-                <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=d4mOWeIuvMI">SENVA 2 Product Reel</a>
+                <InnerLink link={"https://www.youtube.com/watch?v=d4mOWeIuvMI"} text={"SENVA 2 Product Reel"}/>
+                <InnerLink link={"https://viterbischool.usc.edu/news/2023/06/usc-students-advance-augmented-reality-for-artemis-astronauts/"} text={"USC Article"}/>
+                <InnerLink link={"https://www.youtube.com/watch?v=Wjg_yvT7Jo4"} text={"USC Video"}/>
               </div>
 
               <li>Help Is On The Way: USC MFA Thesis VR Film</li>
               <li>Talk2Friends: Android application</li>
               <li>To The Clouds: 360 VR short video (CTAN 504)</li>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4 max-w-fit" href="https://youtu.be/B9d9BBz_8V8">YouTube</a>
+              <InnerLink link={"https://youtu.be/B9d9BBz_8V8"} text={"YouTube"}/>
             </ul>
           </Card>
 
@@ -94,7 +99,7 @@ export default function Home() {
               <h2 className="text-2xl font-normal">
                 [ OTHER ]
               </h2>
-              <li><b>2024:</b> Bloomberg BPuzzled Finalist</li>
+              <li><b>2024:</b> Bloomberg BPuzzled Finalist!</li>
               <li><b>2023:</b> Bloomberg BPuzzled Finalist</li>
               <li><b>2022-2024:</b> Team Leader @ USC Volunteer Center</li>
               <li><b>2021-2022:</b> Volunteer @ USC Volunteer Center</li>
@@ -117,9 +122,9 @@ export default function Home() {
           <div className="flex-col">
             <li>S. Lin*, B. Rizk*, <b>M. Jun*,</b> A. Artze, C. Sullivan, S. Mozgai, and S. Fisher, “Estuary: A Framework For Building Multimodal Low-Latency Real-Time Socially Interactive Agents,” in 24th ACM International Conference on Intelligent Virtual Agents (IVA), Dec. 2024.</li>
             <div className="flex space-x-4">
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://arxiv.org/abs/2410.20116">arXiv</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://estuary-ai.github.io/ ">Website</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.linkedin.com/posts/usc-institute-for-creative-technologies_iva2024-estuary-applevisionpro-ugcPost-7220104574357966848-nGON?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC1KA5YBO_35pRq57OTgAeCA_1D_unPlrlg">LinkedIn post</a>
+              <InnerLink link={"https://arxiv.org/abs/2410.20116"} text={"arXiv"}/>
+              <InnerLink link={"https://estuary-ai.github.io/"} text={"Website"}/>
+              <InnerLink link={"https://www.linkedin.com/posts/usc-institute-for-creative-technologies_iva2024-estuary-applevisionpro-ugcPost-7220104574357966848-nGON?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC1KA5YBO_35pRq57OTgAeCA_1D_unPlrlg"} text={"LinkedIn post"}/>
             </div>
           </div>
 
@@ -127,17 +132,17 @@ export default function Home() {
           <div className="flex-col">
             <li>Z. Yang, <b>M. Jun,</b> J. Tien, S. J. Russell, A. Dragan, and E. Bıyık,  “Trajectory Improvement and Reward Learning from Comparative Language Feedback,” in 8th Annual Conference on Robot Learning (CoRL), Sep. 2024.</li>
             <div className="flex space-x-4">
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://arxiv.org/abs/2410.06401v1">arXiv</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://liralab.usc.edu/comparative-language-feedback/">Website</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=8xyuCQlTXEg">Video</a>
+              <InnerLink link={"https://arxiv.org/abs/2410.06401v1"} text={"arXiv"}/>
+              <InnerLink link={"https://liralab.usc.edu/comparative-language-feedback/"} text={"Website"}/>
+              <InnerLink link={"https://www.youtube.com/watch?v=8xyuCQlTXEg"} text={"Video"}/>
             </div>
           </div>
 
           <div className="flex-col">
             <li>J. Tien*, Z. Yang*, <b>M. Jun,</b> S. J. Russell, A. Dragan, and E. Bıyık, “Optimizing Robot Behavior Via Comparative Language Feedback,” in 3rd Human Robot Interaction (HRI) Workshop on Human-Interactive Robot Learning (HIRL), 2024.</li>
             <div className="flex space-x-4">
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://people.eecs.berkeley.edu/~russell/papers/russell-hri24-hirl-feedback.pdf">Paper</a>
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.youtube.com/watch?v=W-ZJ1ijPf8U">Video</a>
+              <InnerLink link={"https://people.eecs.berkeley.edu/~russell/papers/russell-hri24-hirl-feedback.pdf"} text={"Paper"}/>
+              <InnerLink link={"https://www.youtube.com/watch?v=W-ZJ1ijPf8U"} text={"Video"}/>
             </div>
           </div>
 
@@ -146,7 +151,7 @@ export default function Home() {
           <div className="flex-col">
             <li>M. Potter*, and <b>M. Jun*,</b> “Do Bayesian Neural Networks Improve Weapon System Predictive Maintenance?,” in Annual Reliability and Maintainability Symposium (RAMS), Jan. 2024.</li>
             <div className="flex space-x-4">
-              <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://arxiv.org/abs/2312.10494">arXiv</a>
+              <InnerLink link={"https://arxiv.org/abs/2312.10494"} text={"arXiv"}/>
             </div>
           </div>
         </ul>
