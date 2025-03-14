@@ -10,8 +10,14 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
+    /* --slight-blue: #091735; */
+    --slight-blue: #041231;
     --foreground: #ededed;
   }
+}
+
+.blue-gradient-bg {
+  @apply bg-gradient-to-bl from-[var(--slight-blue)] via-[var(--background)] to-[var(--slight-blue)] 
 }
 
 body {
@@ -20,6 +26,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* * {
-  outline: 1px solid rgb(42, 92, 45) !important;
-} */
+/* * { */
+  /* outline: 1px solid rgb(42, 92, 45) !important; */
+/* } */

@@ -2,7 +2,13 @@
 
 Scrapped the threejs, going for quick 2d for now, in case I get fired soon :D
 
-https://lemonlemonde.github.io
+slay
+
+    ✨ 👇 👇 👇 👇 👇 👇 👇 👇 👇 👇 ✨
+👉 👉  https://lemonlemonde.github.io 👈 👈
+    ✨ 👆 👆 👆 👆 👆 👆 👆 👆 👆 👆 ✨
+
+i'm losing my mind
 
 
 ```bash

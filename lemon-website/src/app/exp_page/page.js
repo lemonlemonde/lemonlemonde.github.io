@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Header from "../components/header";
 import InnerLink from "../components/inner_link";
+import Card from "../components/card";
+import ProjectCard from "../components/project_card";
+import MemorySpaceCard from "../components/memory_space_card";
 
 export default function ExpPage() {
     return (
@@ -39,39 +42,9 @@ export default function ExpPage() {
                     <ul className="ml-6 list-disc font-extralight max-w-full">
                         <li>Published in IVA'24, under the guidance of Professor Scott Fisher</li>
                     </ul>
-                    <p className="font-semibold text-xl">Where You Stand: Chinatown</p>
-                    <div className="flex space-x-6">
-                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1">Website + WebAR link</a>
-                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://mobilemedia.usc.edu/projects/memory-space-chinatownar/">Lab Website</a>
-                        <a className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href="https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge">Grand Prize - Time Capsule Challenge (Niantic's 8th Wall)</a>
 
-                    </div>
-                    <div className="flex md:flex-row flex-col">
-                        <iframe className="md:w-1/2 w-full" src="https://player.vimeo.com/video/951336252?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=5847" allow="fullscreen" title="Memory Space: Chinatown AR"></iframe>
-                        <div className="flex-row md:w-1/2 w-full">
-                            <p className="p-5">A WebAR experience as part of a temporary exhibition in LA's Union Station. </p>
-                            <p className="p-5">In collaboration with [ Metro Art, The Huntington-USC Institute on California and the West, the Chinese Historical Society of Southern California, and the Huntington Library ].</p>
-                        </div>
-                    </div>
+                    <MemorySpaceCard/>
 
-                    <div className="flex lg:flex-row flex-col w-full justify-center space-x-5">
-                        {/* ---- screen vids ---- */}
-                        <div className="flex flex-row justify-center space-x-5 w-full">
-                            <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/956OxNlEtiM?si=42KT6SGpsSu-UDRY" allow="fullscreen" title="MEML Chinatown - Peacock Test (dev)"/>
-                            <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/VbYJ1TKyhqo?si=-ETg_DiC7b5yzBDO" allow="fullscreen" title="MEML Chinatown - SangYuen Store Test"/>
-                        </div>
-                        {/* ---- explanation of screen vids ---- */}
-                        <div className="flex flex-col lg:w-2/3 w-auto p-5">
-                            <p>A closer look (and a dev view) of two of the experiences: Peacock Alley and Sang Yuen Store.</p>
-                            <ul className="ml-6 list-disc font-extralight">
-                                <li>Webapp in HTML and JavaScript</li>
-                                <li>WebAR experiences with A-Frame, Niantic's 8th Wall modules, and VPS waypoints.</li>
-                                <li>InWorld API for conversing with a peacock</li>
-                                <li>Places volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
-                            </ul>
-                        </div>
-
-                    </div>
 
                     <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
                     <ul className="ml-6 list-disc font-extralight max-w-full">

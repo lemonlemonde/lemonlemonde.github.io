@@ -54,7 +54,7 @@ const Card = ({children, link}) => {
             // Smooth gradient change adapted from
             // https://stackoverflow.com/questions/67150736/tailwind-background-gradient-transition
             ref={boxRef}
-            className="w-full p-10 border-2 border-[var(--background)] transition-all duration-500 bg-gradient-to-t from-[#091735] via-[var(--background)] to-[var(--background)] bg-size-200 -bg-pos-10 hover:bg-pos-100 hover:scale-105 cursor-pointer"
+            className="w-full p-10 border-2 border-[var(--background)] transition-all duration-500 bg-gradient-to-t from-[var(--slight-blue)] via-[var(--background)] to-[var(--background)] bg-size-200 -bg-pos-10 hover:bg-pos-100 hover:scale-105 cursor-pointer"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => router.push(link)}
