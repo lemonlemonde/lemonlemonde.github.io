@@ -7,7 +7,7 @@ export default function ProjectCard({ title, links, children }) {
         return (
             <div className="flex space-x-6">
                 {links.map(([text, url], index) => (
-                    <a key={index} className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href={url}>
+                    <a key={index} target="_blank" className="flex text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4" href={url}>
                         {text}
                     </a>
                 ))}

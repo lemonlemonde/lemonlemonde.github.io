@@ -22,8 +22,13 @@ export default function ToTheCloudsCard() {
                     <iframe className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/B9d9BBz_8V8?si=7EHGjIAFcftkoE83" allow="fullscreen; accelerometer; gyroscope; web-share" title="Estuary: IVA24 Reel (Ver5)"></iframe>
                 </div>
                 <div className="flex-row md:w-1/2 w-full p-5 space-y-5">
-                    <p>Class project for CTAN 504. Made in Maya. All models and textures are not my own, but lighting and animation were done by me. Some sounds are my own, recorded by the main gates of USC (buses) or fiddling with my guitar while my roommate is out.</p>
+                    <p>Class project for CTAN 504. Made in Maya. Meant to be therapeutic, but I saw some people gripping their chairs as the train fell apart...</p>
                     <p>Largely made for viewing on a Quest 2.</p>
+                    <ul className="ml-6 list-disc font-extralight">
+                        <li>All models and textures are not my own</li>
+                        <li>Lighting and animation were done by me</li>
+                        <li>Some sounds are my own, recorded by the main gates of USC (buses) or fiddling with my guitar while my roommate is out</li>
+                    </ul>
                 </div>
             </div>
 
@@ -42,7 +47,8 @@ export default function ToTheCloudsCard() {
                         <li>Remove looping while train is moving (I ran out of time to render)</li>
                         <li>Better (more) cloud VDB rendering</li>
                         <li>Move/manipulate skydome</li>
-                        <li>More coheisve sound design</li>
+                        <li>More cohesive sound design</li>
+                        <li>Make it less scary...?????</li>
                     </ul>
                 </div>
             </div>

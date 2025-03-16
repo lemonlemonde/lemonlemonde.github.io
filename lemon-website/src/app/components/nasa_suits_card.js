@@ -22,26 +22,35 @@ export default function NasaSuitsCard() {
                     <iframe className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/d4mOWeIuvMI?si=lGyMPzA5D2zBeocA" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
                 </div>
                 <div className="flex-row md:w-1/2 w-full p-5 space-y-5">
-                    <p>An Augmented Reality application on the Microsoft HoloLens2 to help astronauts with navigation, localization, terrain mapping, biometric and telemetry data, UIA panel instructions in low-light conditions.</p>
-                    <p>This was a continuous project across two years, working jointly with students and faculty from University of Arizona (2022) and University of California, Berkeley (2023).</p>
+                    <p>An Augmented Reality application on the Microsoft HoloLens2 (with MRTK2) to help astronauts with navigation, localization, terrain mapping, biometric and telemetry data, UIA panel instructions in low-light conditions.</p>
+                    <p>This project evolved into the Estuary project!</p>
                 </div>
             </div>
 
             <div className="flex lg:flex-row flex-col md:space-x-5 space-x-0">
                 {/* ---- screen vids ---- */}
-                {/* <div className="flex lg:w-1/2 w-full lg:justify-start justify-center items-center">
-                    <iframe className="aspect-[9/16] w-1/2 max-w-[200] pr-5" src="https://www.youtube.com/embed/956OxNlEtiM?si=42KT6SGpsSu-UDRY" allow="fullscreen" title="MEML Chinatown - Peacock Test (dev)" />
-                    <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/VbYJ1TKyhqo?si=-ETg_DiC7b5yzBDO" allow="fullscreen" title="MEML Chinatown - SangYuen Store Test" />
-                </div> */}
+                <div className="flex lg:w-1/2 w-full lg:justify-start justify-center items-center">
+                    <embed
+                        src="/AEGIS_NASA_SUITS_2023_Retrospective_Paper_.pdf"
+                        type="application/pdf"
+                        width="100%"
+                        height="600px"
+                    />
+                </div>
                 <div className="flex-row lg:w-1/2 w-full p-5 space-y-5">
                     {/* ---- explanation of screen vids ---- */}
-                    <p>This project evolved into the Estuary project!</p>
-                    {/* <ul className="ml-6 list-disc font-extralight">
-                        <li>Webapp in HTML and JavaScript</li>
-                        <li>WebAR experiences with A-Frame, Niantic's 8th Wall modules, and VPS waypoints.</li>
-                        <li>InWorld API for conversing with a peacock</li>
-                        <li>Places volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
-                    </ul> */}
+                    <ul className="ml-6 list-disc font-extralight">
+                        <li><b>Short-range navigation:</b> terrain detection</li>
+                        <li><b>Long-range navigation:</b></li>
+                        <ul className="ml-6 list-disc font-extralight">
+                            <li>user is localized with GPS and manual true-north calibration, and displayed on a digital terrain model (DTM)</li>
+                            <li>A* path finding, avoiding large altitude changes, breadcrumb path displayed in AR</li>
+                        </ul>
+                        <li><b>Telemetry:</b> packet networking and data management across Raspberry Pi, HoloLens2, telemetry streams, and internal AI server</li>
+                        <li><b>AI Companion:</b> voice-activated and off-cloud AI companion for voice commands</li>
+                        <li><b>Computer Vision for UIA egress:</b> Vuforia UIA panel detection and instructions displayed in AR</li>
+                        <li className="text-gray-500">To be really honest, a lot things I don't remember anymore, because I was so sleep deprived</li>
+                    </ul>
                 </div>
             </div>
         </ProjectCard>

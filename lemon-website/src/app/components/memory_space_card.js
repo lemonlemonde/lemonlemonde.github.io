@@ -16,7 +16,7 @@ export default function MemorySpaceCard() {
                     <iframe className="aspect-[16/9] w-full" src="https://player.vimeo.com/video/951336252?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=5847" allow="fullscreen" title="Memory Space: Chinatown AR"></iframe>
                 </div>
                 <div className="flex-row md:w-1/2 w-full p-5 space-y-5">
-                    <p>A WebAR experience as part of a temporary exhibition in LA's Union Station. </p>
+                    <p>A WebAR experience as part of a temporary exhibition in LA's Union Station to show the history of LA's original Chinatown.</p>
                     <p>In collaboration with <i>[Metro Art, The Huntington-USC Institute on California and the West, the Chinese Historical Society of Southern California, and the Huntington Library]</i>.</p>
                 </div>
             </div>
@@ -31,8 +31,8 @@ export default function MemorySpaceCard() {
                     {/* ---- explanation of screen vids ---- */}
                     <p>A closer look (and a dev view) of two of the experiences: Peacock Alley and Sang Yuen Store.</p>
                     <ul className="ml-6 list-disc font-extralight">
-                        <li>Webapp in HTML and JavaScript</li>
-                        <li>WebAR experiences with A-Frame, Niantic's 8th Wall modules, and VPS waypoints.</li>
+                        <li>Webapp in HTML, CSS, JavaScript (on Niantic's 8th Wall)</li>
+                        <li>WebAR experiences with A-Frame, 8th Wall modules, and VPS waypoints</li>
                         <li>InWorld API for conversing with a peacock</li>
                         <li>Places volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
                     </ul>

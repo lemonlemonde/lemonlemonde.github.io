@@ -5,6 +5,7 @@ import Card from "../components/card";
 import ProjectCard from "../components/project_card";
 import MemorySpaceCard from "../components/memory_space_card";
 
+
 export default function ExpPage() {
     return (
         <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
@@ -15,41 +16,58 @@ export default function ExpPage() {
                     [ EXP ]
                 </h2>
                 <ul className="list-disc font-extralight max-w-full space-y-5">
-                    <li><b>2024-Current:</b> Data Engineer @ DoD's <InnerLink link={"https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Corona/"} text={"NSWC Corona"}/></li>
-                    <ul className="ml-6 list-disc font-extralight max-w-full">
-                        <li>Primarily working with natural language processing (NLP) techniques and ML models across various environments (local, cloud, and air-gapped).</li>
-                        <li>Everything from preprocessing, profiling, exploring, and generating (synthetic) data to establishing pipelines, environments, and endpoints for use cases. </li>
-                        <li>Inevitably contributing to documentation and strategy docs for Navy leadership.</li>
-                        <li>Also working on drone swarm reliability analysis ✈ ✈ 📈</li>
-                    </ul>
+                    <li>
+                        <b>2024-Current:</b> Data Scientist @ DoD's <InnerLink link={"https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Corona/"} text={"NSWC Corona"}/>
+                        <ul className="ml-6 list-disc font-extralight max-w-full">
+                            <li className="text-gray-500"><i>Unable to talk about specifics but...</i></li>
+                            <li>Primarily working with NLP techniques and ML models across various environments (local, cloud, and air-gapped).</li>
+                            <ul className="ml-6 list-disc">
+                                <li>Preprocessing, profiling, exploring, and generating (synthetic) data.</li>
+                                <li>Establishing pipelines, environments, and endpoints for various use cases.</li>
+                                <li>Containerization and deploying to edge-compute environments.</li>
+                            </ul>
+                            <li>Inevitably contributing to documentation and strategy docs for Navy leadership.</li>
+                            <li>Also working on drone swarm reliability analysis ✈ ✈ 📈</li>
+                            <li className="text-gray-500"><i>[ Azure ML Studio, OpenShift, Python, SQL, ]</i></li>
+                        </ul>
+                    </li>
 
 
-                    <li><b>2024-Current:</b> Student Volunteer @ USC's <InnerLink link={"https://ict.usc.edu/research/labs-groups/virtual-human-therapeutics-lab/"} text="Virtual Human Therapeutics Lab (VHTL)"/></li>
-                    <ul className="ml-6 list-disc font-extralight max-w-full">
-                        <li>Accepted to CHI'25, under the guidance of Director Sharon Mozgai!</li>
-                    </ul>
+                    <li>
+                        <b>2024-Current:</b> Student Volunteer @ USC's <InnerLink link={"https://ict.usc.edu/research/labs-groups/virtual-human-therapeutics-lab/"} text="Virtual Human Therapeutics Lab (VHTL)"/>
+                        <ul className="ml-6 list-disc font-extralight max-w-full">
+                            <li>Accepted to <a className="text-gray-500 underline" href={"/pub_page"}>CHI'25</a>, under the guidance of Director Sharon Mozgai!</li>
+                        </ul>
+                    </li>
 
 
                     <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://liralab.usc.edu/"} text="Learning and Interactive Robot Autonomy Lab (LiraLab)"/></li>
                     <ul className="ml-6 list-disc font-extralight max-w-full">
-                        <li>Published in CoRL'24, under the guidance of Professor Erdem Bıyık!</li>
-                        <li>Published in HRI'24 HIRL Workshop, under the guidance of Professor Erdem Bıyık :)</li>
+                        <li>Published in <a className="text-gray-500 underline" href={"/pub_page"}>CoRL'24</a>, under the guidance of Professor Erdem Bıyık</li>
+                        <li>Published in <a className="text-gray-500 underline" href={"/pub_page"}>HRI'24 HIRL Workshop</a>, under the guidance of Professor Erdem Bıyık :)</li>
                     </ul>
 
 
 
                     <li><b>2023-2024:</b> Student Researcher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/></li>
                     <ul className="ml-6 list-disc font-extralight max-w-full">
-                        <li>Published in IVA'24, under the guidance of Professor Scott Fisher</li>
+                        <li>Published in IVA'24, under the guidance of Professor Scott Fisher!</li>
+                        <li><a className="text-gray-500 underline" href={"/proj_page"}>Memory Space: Chinatown AR project</a></li>
+                        {/* <div className="flex space-x-6">
+                            <InnerLink link={"https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1"} text={"Website + WebAR link"}/>
+                            <InnerLink link={"https://mobilemedia.usc.edu/projects/memory-space-chinatownar/"} text={"Lab Website"}/>
+                            <InnerLink link={"https://player.vimeo.com/video/951336252?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=5847"} text={"Vimeo"}/>
+                            <InnerLink link={"https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge"} text={"Grand Prize - Time Capsule Challenge (Niantic's 8th Wall)"}/>
+                        </div> */}
                     </ul>
 
-                    <MemorySpaceCard/>
 
-
-                    <li><b>Summer 2023:</b> Intern @ DoD's NSWC Corona</li>
-                    <ul className="ml-6 list-disc font-extralight max-w-full">
-                        <li>Published and presented at RAMS'24, under the guidance of mentor Michael Potter!</li>
-                    </ul>
+                    <li>
+                        <b>Summer 2023:</b> Intern @ DoD's NSWC Corona
+                        <ul className="ml-6 list-disc font-extralight max-w-full">
+                            <li>Published and presented at <a className="text-gray-500 underline" href={"/pub_page"}>RAMS'24</a>, under the guidance of mentor Michael Potter!</li>
+                        </ul>
+                    </li>
 
                     <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
                     <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
