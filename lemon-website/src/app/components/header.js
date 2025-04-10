@@ -27,7 +27,7 @@ export default function Header() {
                 // whileHover={{ color: "#ededed", scaleX: 1 }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="h-px bg-white md:w-48 w-0 my-5 me-10"></div>
+                <div className="h-px bg-white md:w-48 w-20 my-5 md:me-10 me-4"></div>
             </motion.h1>
             
             {/* draggy letters */}
@@ -66,7 +66,7 @@ export default function Header() {
                 // whileHover={{ color: "#ededed", scaleX: 1 }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="h-px bg-white md:w-48 w-0 my-5 ms-10"></div>
+                <div className="h-px bg-white md:w-48 w-20 my-5 md:ms-10 ms-4"></div>
             </motion.h1>
 
             {/* shadow clone */}

@@ -26,37 +26,47 @@ export default function Home() {
         </div> */}
 
         {/* horizontal blurb */}
-        <div className="flex space-x-14 center w-full justify-center">
+        <div className="flex lg:flex-row flex-col lg:space-x-14 space-x-0 lg:space-y-0 space-y-14 center w-full justify-center">
           {/* <EyeClosed className="w-1/3 center animate-pulse" size={100} /> */}
-          <Image
-            aria-hidden
-            // src="/face_cropped.png"
-            src="/squared.png"
-            alt="Globe icon"
-            width={300}
-            height={160}
-          />
+          <div className="flex lg:w-1/2 w-full justify-center">
+            <Image
+              aria-hidden
+              // src="/face_cropped.png"
+              src="/squared.png"
+              alt="Globe icon"
+              width={300}
+              height={300}
+              className="flex justify-self-center"
+            />
+          </div>
 
           {/* bullet points */}
-          <ul className="list-disc space-y-3 font-light w-1/2">
-            <h2 className="text-2xl font-normal">
-              [ TL;DR ]
-            </h2>
-            <li className="text-lime-500">Data Scientist @ US Naval Base</li>
-            <li className="text-lime-500">B.S. in CS @ University of Southern California (USC), 2024</li>
-            <p className="text-sm">& Minor in 3D-Animation</p>
-            <li>T3 Secret Clearance</li>
-            <br/>
-            Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
-            {/* <li>Current thoughts:
-              <ul className="ml-6 list-disc font-extralight max-w-full text-sm">
-                <li>Want to deepdive: containers, camera access on Quest3</li>
-                <li>Did I shut down the VM?</li>
-                <li>Haikyuu Chapter 371</li>
-                <li>I'll never operate on complete information</li>
-              </ul>
-            </li> */}
-          </ul>
+          <div className="flex lg:w-1/2 w-full justify-center">
+            <ul className="list-disc space-y-3 font-light max-w-md lg:px-10">
+              <div className="flex w-full relative lg:justify-start justify-center mb-[20px]">
+                <div className="h-px bg-white w-20 my-4"></div>
+                <h2 className="text-2xl font-normal lg:justify-self-start justify-self-center mx-5">
+                  [ TL;DR ]
+                </h2>
+                <div className="h-px bg-white w-20 my-4"></div>
+              </div>
+
+              <li className="text-lime-500">Data Scientist @ US Naval Base</li>
+              <li className="text-lime-500">B.S. in CS @ University of Southern California (USC), 2024</li>
+              <p className="text-sm">& Minor in 3D-Animation</p>
+              <li>T3 Secret Clearance</li>
+              <br/>
+              Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
+              {/* <li>Current thoughts:
+                <ul className="ml-6 list-disc font-extralight max-w-full text-sm">
+                  <li>Want to deepdive: containers, camera access on Quest3</li>
+                  <li>Did I shut down the VM?</li>
+                  <li>Haikyuu Chapter 371</li>
+                  <li>I'll never operate on complete information</li>
+                </ul>
+              </li> */}
+            </ul>
+          </div>
         </div>
 
         {/* experience */}
