@@ -1,3 +1,4 @@
+import HoverProjectCard from "./hover_project_card";
 import ProjectCard from "./project_card";
 
 export default function NasaSuitsCard() {
@@ -15,7 +16,7 @@ export default function NasaSuitsCard() {
 
 
     return (
-        <ProjectCard title={title} links={links}>
+        <HoverProjectCard title={title} links={links} link={"nasa_suits_page"}>
 
             <div className="flex md:flex-row flex-col md:space-x-5 space-x-0">
                 <div className="flex md:w-1/2 w-full md:justify-start justify-center">
@@ -26,33 +27,6 @@ export default function NasaSuitsCard() {
                     <p>This project evolved into the Estuary project!</p>
                 </div>
             </div>
-
-            <div className="flex lg:flex-row flex-col md:space-x-5 space-x-0">
-                {/* ---- screen vids ---- */}
-                <div className="flex lg:w-1/2 w-full lg:justify-start justify-center items-center">
-                    <embed
-                        src="/AEGIS_NASA_SUITS_2023_Retrospective_Paper_.pdf"
-                        type="application/pdf"
-                        width="100%"
-                        height="600px"
-                    />
-                </div>
-                <div className="flex-row lg:w-1/2 w-full p-5 space-y-5">
-                    {/* ---- explanation of screen vids ---- */}
-                    <ul className="ml-6 list-disc font-extralight">
-                        <li><b>Short-range navigation:</b> terrain detection</li>
-                        <li><b>Long-range navigation:</b></li>
-                        <ul className="ml-6 list-disc font-extralight">
-                            <li>user is localized with GPS and manual true-north calibration, and displayed on a digital terrain model (DTM)</li>
-                            <li>A* path finding, avoiding large altitude changes, breadcrumb path displayed in AR</li>
-                        </ul>
-                        <li><b>Telemetry:</b> packet networking and data management across Raspberry Pi, HoloLens2, telemetry streams, and internal AI server</li>
-                        <li><b>AI Companion:</b> voice-activated and off-cloud AI companion for voice commands</li>
-                        <li><b>Computer Vision for UIA egress:</b> Vuforia UIA panel detection and instructions displayed in AR</li>
-                        <li className="text-gray-500">To be really honest, a lot things I don't remember anymore, because I was so sleep deprived</li>
-                    </ul>
-                </div>
-            </div>
-        </ProjectCard>
+        </HoverProjectCard>
     );
 };

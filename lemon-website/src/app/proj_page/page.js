@@ -19,28 +19,6 @@ export default function ProjPage() {
                     [ PROJS ]
                 </h2>
                 <ul className="list-disc font-extralight w-full space-y-14">
-
-                    <li>2023-current: 
-                        <ul className="ml-6 list-disc mb-4">
-                            <li>with Professor Scott Fisher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/></li>
-                            <li>with friends :)</li>
-                        </ul>
-                        <EstuaryCard/>
-                    </li>
-
-                    <li>2023-2024
-                        <ul className="ml-6 list-disc mb-4">
-                            <li>with team @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/></li>
-                        </ul>
-                        <MemorySpaceCard/>
-                    </li>
-
-                    <li>2022-2023
-                        <ul className="ml-6 list-disc mb-4">
-                            <li>with team @ USC, University of Arizona (2022), UC Berkeley (2023)</li>
-                        </ul>
-                        <NasaSuitsCard/>
-                    </li>
                     
                     <li>2023-2024 - Help Is On The Way: USC MFA Thesis VR Film
                         <ul className="ml-6 list-disc mb-4">

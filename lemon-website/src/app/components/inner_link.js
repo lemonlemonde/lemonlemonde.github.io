@@ -5,7 +5,7 @@
 export default function InnerLink({link, text}) {
     return (
         <a 
-            className="text-slate-500 items-center gap-2 hover:underline hover:underline-offset-4 pointer-events-auto" 
+            className="text-red-300 items-center italic gap-2 hover:underline hover:underline-offset-4 pointer-events-auto" 
             href={link} 
             onClick={(e) => e.stopPropagation()}
             target="_blank"

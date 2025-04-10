@@ -19,8 +19,18 @@ export default function Header() {
     ]
 
     return (
-        <div className="flex w-full relative">
+        <div className="flex w-full relative justify-center">
+            {/* left line */}
+            <motion.h1
+                initial={{ color: "#00000", scaleX: 0 }}
+                animate={{ color: "#ededed", scaleX: 1 }}
+                // whileHover={{ color: "#ededed", scaleX: 1 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="h-px bg-white md:w-48 w-0 my-5 me-10"></div>
+            </motion.h1>
             
+            {/* draggy letters */}
             <div 
                 className="flex w-fit max-w-screen-lg cursor-pointer"
                 onClick={() => {
@@ -31,7 +41,7 @@ export default function Header() {
                 <motion.div
                     key={index}
                     drag="x"
-                    dragConstraints={{ left: 0, right: 180 }}
+                    dragConstraints={{ left: -180, right: 180 }}
                     onDragStart={() => setDragDistance(0)}
                     onDrag={(event, info) => setDragDistance(info.offset.x)}
                     onDragEnd={() => setTimeout(() => setDragDistance(0), 50)}
@@ -48,6 +58,16 @@ export default function Header() {
                 </motion.div>
                 ))}
             </div>
+
+            {/* right line */}
+            <motion.h1
+                initial={{ color: "#00000", scaleX: 0 }}
+                animate={{ color: "#ededed", scaleX: 1 }}
+                // whileHover={{ color: "#ededed", scaleX: 1 }}
+                transition={{ duration: 0.8 }}
+            >
+                <div className="h-px bg-white md:w-48 w-0 my-5 ms-10"></div>
+            </motion.h1>
 
             {/* shadow clone */}
             <div 
