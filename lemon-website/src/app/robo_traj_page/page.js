@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Header from "../components/header";
+import Footer from "../components/footer";
+
 import InnerLink from "../components/inner_link";
 import Card from "../components/card";
 import ProjectCard from "../components/project_card";
+
 import MemorySpaceCard from "../components/memory_space_card";
 
 
@@ -43,39 +46,7 @@ export default function RoboTrajPage() {
 
             </main>
 
-            {/* links to make me look cooler */}
-            <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://github.com/lemonlemonde"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/globe.svg"
-                        alt="Globe icon"
-                        width={16}
-                        height={16}
-                    />
-                    GitHub
-                </a>
-                <a
-                    className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-                    href="https://scholar.google.com/citations?user=AalqHJ4AAAAJ&hl=en&authuser=1"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <Image
-                        aria-hidden
-                        src="/globe.svg"
-                        alt="Globe icon"
-                        width={16}
-                        height={16}
-                    />
-                    Google Scholar
-                </a>
-            </footer>
+            <Footer/>
         </div>
     );
 }

@@ -11,6 +11,8 @@ import NasaSuitsCard from "./components/nasa_suits_card";
 import ToTheCloudsCard from "./components/to_the_clouds_card";
 import MemorySpaceCard from "./components/memory_space_card";
 import RoboTrajCard from "./components/robo_traj_card";
+import HIOTWCard from "./components/hiotw_card";
+import Footer from "./components/footer";
 
 export default function Home() {
 
@@ -26,9 +28,9 @@ export default function Home() {
         </div> */}
 
         {/* horizontal blurb */}
-        <div className="flex lg:flex-row flex-col lg:space-x-14 space-x-0 lg:space-y-0 space-y-14 center w-full justify-center">
+        <div className="flex lg:flex-row flex-col lg:space-y-0 space-y-14 center w-full justify-center">
           {/* <EyeClosed className="w-1/3 center animate-pulse" size={100} /> */}
-          <div className="flex lg:w-1/2 w-full justify-center">
+          <div className="flex lg:w-1/2 w-full lg:justify-end justify-center lg:pe-14 pe-0">
             <Image
               aria-hidden
               // src="/face_cropped.png"
@@ -57,14 +59,6 @@ export default function Home() {
               <li>T3 Secret Clearance</li>
               <br/>
               Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
-              {/* <li>Current thoughts:
-                <ul className="ml-6 list-disc font-extralight max-w-full text-sm">
-                  <li>Want to deepdive: containers, camera access on Quest3</li>
-                  <li>Did I shut down the VM?</li>
-                  <li>Haikyuu Chapter 371</li>
-                  <li>I'll never operate on complete information</li>
-                </ul>
-              </li> */}
             </ul>
           </div>
         </div>
@@ -125,28 +119,17 @@ export default function Home() {
           <SectionTitle title={"PROJS"}/>
 
           <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
-            {/* proj links */}
-            {/* <Card link={"/proj_page"} className="w-2/3">
-              <h2 className="text-2xl font-normal">
-                [ PROJS ]
-              </h2>
-              <ul className="list-disc font-extralight w-full pt-2">
-
-                <li>Help Is On The Way: USC MFA Thesis VR Film</li>
-                <li>Talk2Friends: Android application</li>
-                <li>To The Clouds: 360 VR short video (CTAN 504)</li>
-                <InnerLink link={"https://youtu.be/B9d9BBz_8V8"} text={"YouTube"}/>
-              </ul>
-            </Card> */}
-
-            
             <EstuaryCard/>
             <MemorySpaceCard/>
-
           </div>
-          <NasaSuitsCard/>
 
+          <NasaSuitsCard/>
           <RoboTrajCard/>
+
+          <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
+            <HIOTWCard/>
+            <ToTheCloudsCard/>
+          </div>
         </div>
 
 
@@ -163,7 +146,7 @@ export default function Home() {
               <div className="flex space-x-4">
                 <InnerLink link={"https://arxiv.org/abs/2410.20116"} text={"arXiv"}/>
                 <InnerLink link={"https://estuary-ai.github.io/"} text={"Website"}/>
-                <InnerLink link={"https://www.linkedin.com/posts/usc-institute-for-creative-technologies_iva2024-estuary-applevisionpro-ugcPost-7220104574357966848-nGON?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC1KA5YBO_35pRq57OTgAeCA_1D_unPlrlg"} text={"LinkedIn post"}/>
+                <InnerLink link={"https://www.linkedin.com/posts/usc-institute-for-creative-technologies_iva2024-estuary-applevisionpro-ugcPost-7220104574357966848-nGON?utm_source=share&utm_medium=member_desktop&rcm=ACoAAC1KA5YBO_35pRq57OTgAeCA_1D_unPlrlg"} text={"LinkedIn"}/>
               </div>
             </div>
 
@@ -199,39 +182,7 @@ export default function Home() {
 
       </main>
 
-      {/* footer links to make me look cooler */}
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://github.com/lemonlemonde"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          GitHub
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://scholar.google.com/citations?user=AalqHJ4AAAAJ&hl=en&authuser=1"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Google Scholar
-        </a>
-      </footer>
+      <Footer/>
     </div>
   );
 }

@@ -78,7 +78,7 @@ export default function HoverProjectCard({ title, links, children, link}) {
             }}
         >
 
-            <div className="border-l-2 p-5">
+            <div className="border-l-2 p-5 h-full">
                 {/* title duh */}
                 <p className="font-semibold text-xl">{title}</p>
 
