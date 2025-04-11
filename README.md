@@ -1,16 +1,14 @@
-## What is?
+## TL;DR?
 
 Personal website where I store all the cool things I've tried.
 
-Scrapped the threejs, going for quick 2d for now, in case I get fired soon :D
-
 ```
-    ✨ 👇 👇 👇 👇 👇 👇 👇 👇 👇 👇 ✨
-👉 👉  https://lemonlemonde.github.io 👈 👈
-    ✨ 👆 👆 👆 👆 👆 👆 👆 👆 👆 👆 ✨
+    ✨ 👇 👇 👇 👇 👇 ✨
+👉 👉 https://miru.sh 👈 👈
+    ✨ 👆 👆 👆 👆 👆 ✨
 ```
-Sorry here's the actual hyperlinked link:
-- https://lemonlemonde.github.io
+Sorry here's the actual linked hyperlinked link 🧝:
+- https://miru.sh
 
 
 ---
@@ -31,5 +29,5 @@ npm run deploy
 - React (Next.js)
 - Tailwind CSS
 - Lucide
-- Spline (not yet)
 - Motion
+- Spline (not yet)
