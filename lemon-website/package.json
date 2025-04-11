@@ -4,7 +4,7 @@
   "homepage": "https://lemonlemonde.github.io",
   "private": true,
   "scripts": {
-    "deploy": "npm run build && gh-pages -d out",
+    "deploy": "npm run build && echo miru.sh > CNAME && gh-pages -d out",
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
