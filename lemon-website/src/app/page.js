@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { EyeClosed, Eye } from "lucide-react";
 import Card from "./components/card";
-import SplineObj from "./components/spline_obj";
+// import { EyeClosed, Eye } from "lucide-react";
+// import SplineObj from "./components/spline_obj";
 import Header from "./components/header";
 import InnerLink from "./components/inner_link";
 import SectionTitle from "./components/section_title";
@@ -63,55 +63,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* experience */}
-        {/* <Card link={"/exp_page"}>
-          <div>
-            <h2 className="text-2xl font-normal">
-              [ EXP ]
-            </h2>
-            <ul className="list-disc font-extralight max-w-full space-y-3 pt-2">
-              <li><b>2024-Current:</b> Data Scientist @ <InnerLink link={"https://www.navsea.navy.mil/Home/Warfare-Centers/NSWC-Corona/"} text={"US Naval Base"}/></li>
-              <li>
-                <b>2024-Current: </b>
-                Student Volunteer @ <InnerLink link={"https://ict.usc.edu/research/labs-groups/virtual-human-therapeutics-lab/"} text="Virtual Human Therapeutics Lab (VHTL)"/>
-                <ul className="ml-6 list-disc font-extralight max-w-full">
-                  <li>CHI'25!</li>
-                </ul>
-              </li>
-              
-              <li>
-                <b>2023-2024: </b>
-                Student Researcher @ <InnerLink link={"https://liralab.usc.edu/"} text="Learning and Interactive Robot Autonomy Lab (LiraLab)"/>
-                <ul className="ml-6 list-disc font-extralight max-w-full">
-                  <li>CoRL'24</li>
-                  <li>HRI'24 HIRL Workshop :)</li>
-                </ul>
-              </li>
-
-              <li>
-                <b>2023-2024: </b>
-                Student Researcher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)"/>
-                <ul className="ml-6 list-disc font-extralight max-w-full">
-                  <li>IVA'24!</li>
-                  <li>Memory Space: Chinatown AR project</li>
-                </ul>
-              </li>
-
-              <li>
-                <b>Summer 2023:</b> Intern @ Naval Base
-                <ul className="ml-6 list-disc font-extralight max-w-full">
-                  <li>RAMS'24!</li>
-                  <li>GUI and standardized Python package for weapon system reliability</li>
-                  <li>Experiments with federated learning</li>
-                </ul>
-              </li>
-              
-              <li><b>2021:</b> Mobile App Developer @ Bridges Health startup</li>
-
-              <li><b>2021:</b> Research Intern (CURVE Fellowship) @ USC's ICAROS Lab</li>
-            </ul>
-          </div>
-        </Card> */}
 
         {/* verticals */}
         <div className="flex-row w-full space-y-5">
@@ -135,7 +86,7 @@ export default function Home() {
 
 
         {/* publications */}
-        <Card link={"/pub_page"} className="w-full">
+        <Card link={"https://scholar.google.com/citations?user=AalqHJ4AAAAJ&hl=en&authuser=1"} className="w-full">
           <SectionTitle title={"PUBS"}/>
           <ul className="list-disc font-extralight w-fit space-y-1 pt-2">
 

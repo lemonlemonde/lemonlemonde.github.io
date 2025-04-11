@@ -1,14 +1,6 @@
-import Image from "next/image";
+
 import Header from "../components/header";
 import Footer from "../components/footer";
-
-import FormattedLinks from "../components/formatted_links";
-
-import InnerLink from "../components/inner_link";
-import Card from "../components/card";
-import ProjectCard from "../components/project_card";
-
-import MemorySpaceCard from "../components/memory_space_card";
 
 
 export default function ToTheCloudsPage() {

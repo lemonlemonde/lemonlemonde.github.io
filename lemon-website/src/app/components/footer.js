@@ -1,4 +1,3 @@
-import Image from "next/image"
 import { Github, GithubIcon, GraduationCap, Linkedin } from "lucide-react"
 
 export default function Footer() {

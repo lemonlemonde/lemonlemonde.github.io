@@ -21,17 +21,6 @@ export default function Header() {
         "n"
     ]
 
-    const letters_all = [
-        "M",
-        "i",
-        "r",
-        "u",
-        "J",
-        "u",
-        "n"
-    ]
-
-
     return (
         <div className="flex w-full relative justify-center">
             {/* left line */}

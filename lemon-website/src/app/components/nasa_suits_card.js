@@ -1,5 +1,4 @@
 import HoverProjectCard from "./hover_project_card";
-import ProjectCard from "./project_card";
 
 export default function NasaSuitsCard() {
     const title = "NASA SUITS Challenge 2022-2023"

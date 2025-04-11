@@ -1,11 +1,6 @@
 "use client";
 
 import Header from "../components/header";
-import EstuaryCard from "../components/estuary_card";
-import NasaSuitsCard from "../components/nasa_suits_card";
-import ToTheCloudsCard from "../components/to_the_clouds_card";
-import MemorySpaceCard from "../components/memory_space_card";
-import InnerLink from "../components/inner_link";
 
 export default function ProjPage() {
     return (

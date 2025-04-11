@@ -1,6 +1,4 @@
-import ProjectCard from "./project_card";
 import HoverProjectCard from "./hover_project_card";
-import InnerLink from "../components/inner_link";
 
 export default function EstuaryCard() {
     const title = "Estuary: AR Companion Project"

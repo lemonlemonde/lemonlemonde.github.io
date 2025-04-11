@@ -1,6 +1,4 @@
-import ProjectCard from "./project_card";
 import HoverProjectCard from "./hover_project_card";
-import InnerLink from "../components/inner_link";
 
 export default function HIOTWCard() {
     const title = "Help Is On The Way: VR Thriller"

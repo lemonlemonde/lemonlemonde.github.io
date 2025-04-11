@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "Miru Jun!",
-  description: "Personal website, devolving into madness",
+  description: "Personal website to show pretty pics and vids of my progress",
 };
 
 export default function RootLayout({ children }) {

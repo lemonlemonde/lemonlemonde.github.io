@@ -1,9 +1,4 @@
-import Image from "next/image";
 import Header from "../components/header";
-import InnerLink from "../components/inner_link";
-import Card from "../components/card";
-import ProjectCard from "../components/project_card";
-import MemorySpaceCard from "../components/memory_space_card";
 import Footer from "../components/footer";
 
 

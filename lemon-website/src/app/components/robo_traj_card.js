@@ -1,5 +1,4 @@
 import HoverProjectCard from "./hover_project_card";
-import ProjectCard from "./project_card";
 
 export default function RoboTrajCard() {
     const title = "Trajectory Improvement with Comparative Natural Language Feedback"
