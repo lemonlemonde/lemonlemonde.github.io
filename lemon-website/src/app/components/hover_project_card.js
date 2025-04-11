@@ -4,6 +4,7 @@ import * as motion from "motion/react-client"
 import { useRef, useEffect, useState } from "react";
 
 import InnerLink from "../components/inner_link";
+import FormattedLinks from "./formatted_links";
 
 
 export default function HoverProjectCard({ title, links, children, link}) {
@@ -52,15 +53,6 @@ export default function HoverProjectCard({ title, links, children, link}) {
         }
     }, [isHovered]); // Re-run effect when hover state changes
 
-    const FormattedLinks = ({ links }) => {
-        return (
-            <div className="flex space-x-6">
-                {links.map(([text, url], index) => (
-                    <InnerLink key={index} text={text} link={url}/> 
-                ))}
-            </div>
-        );
-    };
 
     return (
         <div

@@ -53,8 +53,8 @@ export default function Home() {
                 <div className="h-px bg-white w-20 my-4"></div>
               </div>
 
-              <li className="text-lime-500">Data Scientist @ US Naval Base</li>
-              <li className="text-lime-500">B.S. in CS @ University of Southern California (USC), 2024</li>
+              <li className="text-light-green">Data Scientist @ US Naval Base</li>
+              <li className="text-light-green">B.S. in CS @ University of Southern California (USC), 2024</li>
               <p className="text-sm">& Minor in 3D-Animation</p>
               <li>T3 Secret Clearance</li>
               <br/>
@@ -139,10 +139,10 @@ export default function Home() {
           <SectionTitle title={"PUBS"}/>
           <ul className="list-disc font-extralight w-fit space-y-1 pt-2">
 
-            <li>S. Lin, <b className="text-lime-500 italic font-bold">M. Jun*,</b> B. Rizk*, K. Shieh, S. Fisher, and S. Mozgai, “Optimizing SIA Development: A Case Study in User- Centered Design for Estuary, a Multimodal Socially Interactive Agent Framework,” in ACM Conference on Human Factors in Computing Systems (CHI), 2025.</li>
+            <li>S. Lin, <b className="text-light-green italic font-bold">M. Jun*,</b> B. Rizk*, K. Shieh, S. Fisher, and S. Mozgai, “Optimizing SIA Development: A Case Study in User- Centered Design for Estuary, a Multimodal Socially Interactive Agent Framework,” in ACM Conference on Human Factors in Computing Systems (CHI), 2025.</li>
 
             <div className="flex-col">
-              <li>S. Lin*, B. Rizk*, <b className="text-lime-500 italic font-bold">M. Jun*,</b> A. Artze, C. Sullivan, S. Mozgai, and S. Fisher, “Estuary: A Framework For Building Multimodal Low-Latency Real-Time Socially Interactive Agents,” in 24th ACM International Conference on Intelligent Virtual Agents (IVA), Dec. 2024.</li>
+              <li>S. Lin*, B. Rizk*, <b className="text-light-green italic font-bold">M. Jun*,</b> A. Artze, C. Sullivan, S. Mozgai, and S. Fisher, “Estuary: A Framework For Building Multimodal Low-Latency Real-Time Socially Interactive Agents,” in 24th ACM International Conference on Intelligent Virtual Agents (IVA), Dec. 2024.</li>
               <div className="flex space-x-4">
                 <InnerLink link={"https://arxiv.org/abs/2410.20116"} text={"arXiv"}/>
                 <InnerLink link={"https://estuary-ai.github.io/"} text={"Website"}/>
@@ -152,7 +152,7 @@ export default function Home() {
 
 
             <div className="flex-col">
-              <li>Z. Yang, <b className="text-lime-500 italic font-bold">M. Jun,</b> J. Tien, S. J. Russell, A. Dragan, and E. Bıyık,  “Trajectory Improvement and Reward Learning from Comparative Language Feedback,” in 8th Annual Conference on Robot Learning (CoRL), Sep. 2024.</li>
+              <li>Z. Yang, <b className="text-light-green italic font-bold">M. Jun,</b> J. Tien, S. J. Russell, A. Dragan, and E. Bıyık,  “Trajectory Improvement and Reward Learning from Comparative Language Feedback,” in 8th Annual Conference on Robot Learning (CoRL), Sep. 2024.</li>
               <div className="flex space-x-4">
                 <InnerLink link={"https://arxiv.org/abs/2410.06401v1"} text={"arXiv"}/>
                 <InnerLink link={"https://liralab.usc.edu/comparative-language-feedback/"} text={"Website"}/>
@@ -161,7 +161,7 @@ export default function Home() {
             </div>
 
             <div className="flex-col">
-              <li>J. Tien*, Z. Yang*, <b className="text-lime-500 italic font-bold">M. Jun,</b> S. J. Russell, A. Dragan, and E. Bıyık, “Optimizing Robot Behavior Via Comparative Language Feedback,” in 3rd Human Robot Interaction (HRI) Workshop on Human-Interactive Robot Learning (HIRL), 2024.</li>
+              <li>J. Tien*, Z. Yang*, <b className="text-light-green italic font-bold">M. Jun,</b> S. J. Russell, A. Dragan, and E. Bıyık, “Optimizing Robot Behavior Via Comparative Language Feedback,” in 3rd Human Robot Interaction (HRI) Workshop on Human-Interactive Robot Learning (HIRL), 2024.</li>
               <div className="flex space-x-4">
                 <InnerLink link={"https://people.eecs.berkeley.edu/~russell/papers/russell-hri24-hirl-feedback.pdf"} text={"Paper"}/>
                 <InnerLink link={"https://www.youtube.com/watch?v=W-ZJ1ijPf8U"} text={"Video"}/>
@@ -171,7 +171,7 @@ export default function Home() {
 
 
             <div className="flex-col">
-              <li>M. Potter*, and <b className="text-lime-500 italic font-bold">M. Jun*,</b> “Do Bayesian Neural Networks Improve Weapon System Predictive Maintenance?,” in Annual Reliability and Maintainability Symposium (RAMS), Jan. 2024.</li>
+              <li>M. Potter*, and <b className="text-light-green italic font-bold">M. Jun*,</b> “Do Bayesian Neural Networks Improve Weapon System Predictive Maintenance?,” in Annual Reliability and Maintainability Symposium (RAMS), Jan. 2024.</li>
               <div className="flex space-x-4">
                 <InnerLink link={"https://arxiv.org/abs/2312.10494"} text={"arXiv"}/>
               </div>

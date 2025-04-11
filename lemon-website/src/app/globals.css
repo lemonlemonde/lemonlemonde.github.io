@@ -20,6 +20,10 @@
   @apply bg-gradient-to-bl from-[var(--slight-blue)] via-[var(--background)] to-[var(--slight-blue)] 
 }
 
+.text-light-green {
+  @apply text-[#92e57a]
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

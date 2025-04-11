@@ -2,7 +2,7 @@ import HoverProjectCard from "./hover_project_card";
 import ProjectCard from "./project_card";
 
 export default function RoboTrajCard() {
-    const title = "Trajectory Improvement"
+    const title = "Trajectory Improvement with Comparative Natural Language Feedback"
     const links = [
         ["Website", "https://liralab.usc.edu/comparative-language-feedback/"],
         ["CoRL'24 Paper", "https://arxiv.org/abs/2410.06401v1"],
