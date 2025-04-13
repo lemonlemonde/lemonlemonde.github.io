@@ -30,7 +30,7 @@ export default function MemorySpacePage() {
                 <div className="flex lg:flex-row flex-col md:space-x-5 space-x-0">
                     {/* ---- screen vids ---- */}
                     <div className="flex flex-col lg:w-1/2 w-full space-y-5">
-                        <iframe className="aspect-[16/9] w-full" src="https://player.vimeo.com/video/951336252?badge=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" allow="autoplay; fullscreen" title="Memory Space: Chinatown AR"></iframe>
+                        <iframe className="aspect-[16/9] w-full" src="https://player.vimeo.com/video/951336252?badge=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;player_id=memory_space&amp;app_id=58479" allow="autoplay; fullscreen" title="Memory Space: Chinatown AR"></iframe>
                         <div className="flex w-full lg:justify-between justify-center lg:space-x-0 space-x-5">
                             <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/956OxNlEtiM?si=42KT6SGpsSu-UDRY" allow="fullscreen" title="MEML Chinatown - Peacock Test (dev)" />
                             <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/VbYJ1TKyhqo?si=-ETg_DiC7b5yzBDO" allow="fullscreen" title="MEML Chinatown - SangYuen Store Test" />
