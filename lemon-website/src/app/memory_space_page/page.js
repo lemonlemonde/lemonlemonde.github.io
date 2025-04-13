@@ -45,9 +45,10 @@ export default function MemorySpacePage() {
                         <ul className="ml-6 list-disc font-extralight">
                             <li>Webapp in HTML, CSS, JavaScript (on Niantic's 8th Wall)</li>
                             <li>WebAR experiences with A-Frame, 8th Wall modules, and geolocated VPS waypoints</li>
-                            <li>Place volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
+                            <li>Placed volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
                             <li>Converse with a peacock, powered by an LLM through InWorld's API</li>
-                            <li className="text-light-green"><i>[ Unity, AR Foundation, Polyspatial ]</i></li>
+                            <li>Implemented event triggering for user events and asset animations</li>
+                            <li className="text-light-green"><i>[ Javascript, HTML, CSS, A-Frame, Niantic 8th Wall, Blender, Maya ]</i></li>
                         </ul>
                         
                         <p className="pt-10 font-extralight">with Professor Scott Fisher @ USC's <InnerLink link={"https://mobilemedia.usc.edu/"} text="Mobile and Environmental Media Lab (MEML)" /> and friends :) </p>

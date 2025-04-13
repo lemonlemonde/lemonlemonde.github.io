@@ -54,8 +54,9 @@ export default function Home() {
               </div>
 
               <li className="text-light-green">Data Scientist @ US Naval Base</li>
-              <li className="text-light-green">B.S. in CS @ University of Southern California (USC), 2024</li>
+              <li className="text-light-green">B.S. in CS @ University of Southern California (USC)</li>
               <p className="text-sm">& Minor in 3D-Animation</p>
+              <p className="text-sm">2024, Summa Cum Laude</p>
               <li>T3 Secret Clearance</li>
               <br/>
               Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
