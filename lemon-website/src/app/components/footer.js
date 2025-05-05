@@ -1,4 +1,4 @@
-import { Github, GithubIcon, GraduationCap, Linkedin } from "lucide-react"
+import { Github, GithubIcon, GraduationCap, Linkedin, FileUser } from "lucide-react"
 
 export default function Footer() {
     return (
@@ -32,6 +32,16 @@ export default function Footer() {
                 >
                     <Linkedin className="mb-1"/>
                     LinkedIn
+                </a>
+
+                <a
+                    className="flex sm:justify-center justify-end gap-2 hover:underline hover:underline-offset-4"
+                    href="resume.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <FileUser className="mb-1"/>
+                    Resume
                 </a>
             </footer>
         </div>

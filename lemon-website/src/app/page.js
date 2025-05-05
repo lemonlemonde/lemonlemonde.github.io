@@ -38,7 +38,7 @@ export default function Home() {
               alt="Globe icon"
               width={300}
               height={300}
-              className="flex justify-self-center"
+              className="justify-self-center"
             />
           </div>
 
@@ -58,8 +58,9 @@ export default function Home() {
               <p className="text-sm">& Minor in 3D-Animation</p>
               <p className="text-sm">2024, Summa Cum Laude</p>
               <li>T3 Secret Clearance</li>
-              <br/>
-              Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
+              <p className="pt-5">
+                Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
+              </p>
             </ul>
           </div>
         </div>
