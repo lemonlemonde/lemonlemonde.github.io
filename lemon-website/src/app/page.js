@@ -110,6 +110,10 @@ export default function Home() {
           <ul className="list-disc font-extralight w-fit space-y-1 pt-2">
 
             <li>S. Lin, <b className="text-light-green italic font-bold">M. Jun*,</b> B. Rizk*, K. Shieh, S. Fisher, and S. Mozgai, “Optimizing SIA Development: A Case Study in User- Centered Design for Estuary, a Multimodal Socially Interactive Agent Framework,” in ACM Conference on Human Factors in Computing Systems (CHI), 2025.</li>
+              <div className="flex space-x-4">
+                <InnerLink link={"https://arxiv.org/abs/2504.14427"} text={"arXiv"}/>
+                <InnerLink link={"https://youtu.be/2RlmenU1FG4?feature=shared"} text={"Video"}/>
+              </div>
 
             <div className="flex-col">
               <li>S. Lin*, B. Rizk*, <b className="text-light-green italic font-bold">M. Jun*,</b> A. Artze, C. Sullivan, S. Mozgai, and S. Fisher, “Estuary: A Framework For Building Multimodal Low-Latency Real-Time Socially Interactive Agents,” in 24th ACM International Conference on Intelligent Virtual Agents (IVA), Dec. 2024.</li>
