@@ -47,6 +47,8 @@ export default function EstuaryPage() {
                             <li>Published in IVA'24</li>
                             <li>Published in CHI'25 (soon)!</li>
 
+                            <br></br>
+                            
                             <li className="text-light-green"><i>[ Unity, AR Foundation, Polyspatial ]</i></li>
                         </ul>
 

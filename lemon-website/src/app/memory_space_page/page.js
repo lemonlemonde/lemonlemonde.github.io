@@ -48,6 +48,9 @@ export default function MemorySpacePage() {
                             <li>Placed volumetric videos of actors and custom 2D/3D assets on the screen, relative to the positioning of scanned waypoints around LA's Union Station</li>
                             <li>Converse with a peacock, powered by an LLM through InWorld's API</li>
                             <li>Implemented event triggering for user events and asset animations</li>
+
+                            <br></br>
+                            
                             <li className="text-light-green"><i>[ Javascript, HTML, CSS, A-Frame, Niantic 8th Wall, Blender, Maya ]</i></li>
                         </ul>
                         

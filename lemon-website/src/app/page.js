@@ -12,6 +12,9 @@ import ToTheCloudsCard from "./components/to_the_clouds_card";
 import MemorySpaceCard from "./components/memory_space_card";
 import RoboTrajCard from "./components/robo_traj_card";
 import HIOTWCard from "./components/hiotw_card";
+import CringeCanonCard from "./components/cringe_canon_card";
+import SketchArtistCard from "./components/sketch_artist_card";
+import QueueTifyCard from "./components/queuetify_card";
 import Footer from "./components/footer";
 
 export default function Home() {
@@ -83,6 +86,20 @@ export default function Home() {
             <HIOTWCard/>
             <ToTheCloudsCard/>
           </div>
+        </div>
+        
+        {/* verticals */}
+        <div className="flex-row w-full space-y-5">
+          
+          <SectionTitle title={"OTHER PROJS"}/>
+          <p className="flex w-full justify-center pb-[40px]">[ Less serious, more learning ]</p>
+
+          <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
+            <CringeCanonCard/>
+            <SketchArtistCard/>
+          </div>
+
+          <QueueTifyCard/>
         </div>
 
 

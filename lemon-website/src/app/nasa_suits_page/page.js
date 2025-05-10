@@ -53,6 +53,9 @@ export default function NasaSuitsPage() {
                             <li><b>Telemetry:</b> packet networking and data management across Raspberry Pi, HoloLens2, telemetry streams, and internal AI server</li>
                             <li><b>AI Companion:</b> voice-activated and off-cloud AI companion for voice commands</li>
                             <li><b>Computer Vision for UIA egress:</b> Vuforia UIA panel detection and instructions displayed in AR</li>
+
+                            <br></br>
+                            
                             <li className="text-light-green">[ Unity, MRTK2, Vuforia, telemetry, SocketIO, sleep deprivation ]</li>
                         </ul>
                     </div>

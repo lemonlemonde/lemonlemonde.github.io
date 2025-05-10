@@ -57,6 +57,9 @@ export default function RoboTrajPage() {
                             </ul>
                             <li>Published in CoRL'24</li>
                             <li>Published in HIRL workshop @ HRI'24</li>
+
+                            <br></br>
+                            
                             <li className="text-light-green"><i>[ Transformers, PyTorch, Robosuite, Meta-World ]</i></li>
                         </ul>
 
