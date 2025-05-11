@@ -92,7 +92,7 @@ export default function Home() {
         <div className="flex-row w-full space-y-5">
           
           <SectionTitle title={"OTHER PROJS"}/>
-          <p className="flex w-full justify-center pb-[40px]">[ Less serious, more learning ]</p>
+          <p className="flex w-full justify-center pb-[40px]">[ Play is the highest form of research - probably not Einstein ]</p>
 
           <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
             <CringeCanonCard/>
