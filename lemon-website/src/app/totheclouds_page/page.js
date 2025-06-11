@@ -33,6 +33,7 @@ export default function ToTheCloudsPage() {
                             <li>Some sounds are my own, recorded at USC (buses) or fiddling with my guitar while my roommate is out</li>
                             <li>with the help of Prof. Eric Hanson and Nate Fairchild and many online forums 🥺</li>
 
+                            <li>Heavy inspiration from Spirited Away. Also I just like trains. Also Omniscient Reader's Viewpoint (webnovel/webtoon/bad live-action)started in a train. Also just a huge fan of public transportation falling apart beneath my feet. It makes me feel alive.</li>
                         </ul>
                         
                         <p>Lots of improvements to be made!</p>

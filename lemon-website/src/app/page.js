@@ -82,24 +82,24 @@ export default function Home() {
           <NasaSuitsCard/>
           <RoboTrajCard/>
 
-          <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
-            <HIOTWCard/>
-            <ToTheCloudsCard/>
-          </div>
         </div>
         
         {/* verticals */}
         <div className="flex-row w-full space-y-5">
           
-          <SectionTitle title={"OTHER PROJS"}/>
-          <p className="flex w-full justify-center pb-[40px]">[ Play is the highest form of research - probably not Einstein ]</p>
+          <SectionTitle title={"SIDE QUESTS"}/>
+          <p className="flex w-full justify-center pb-[40px]">[ Remembering I have free will in an open-world environment ]</p>
 
           <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
             <CringeCanonCard/>
             <SketchArtistCard/>
           </div>
 
-          <QueueTifyCard/>
+          <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
+            {/* <HIOTWCard/> */}
+            <QueueTifyCard/>
+            <ToTheCloudsCard/>
+          </div>
         </div>
 
 
