@@ -15,7 +15,10 @@ import HIOTWCard from "./components/hiotw_card";
 import CringeCanonCard from "./components/cringe_canon_card";
 import SketchArtistCard from "./components/sketch_artist_card";
 import QueueTifyCard from "./components/queuetify_card";
+import SidetrekdCard from "./components/sidetrekd_card";
+import HalfthoughtCard from "./components/halfthought_card";
 import Footer from "./components/footer";
+import FadeIn from "./components/fade_in";
 
 export default function Home() {
 
@@ -31,42 +34,44 @@ export default function Home() {
         </div> */}
 
         {/* horizontal blurb */}
-        <div className="flex lg:flex-row flex-col lg:space-y-0 space-y-14 center w-full justify-center">
-          {/* <EyeClosed className="w-1/3 center animate-pulse" size={100} /> */}
-          <div className="flex lg:w-1/2 w-full lg:justify-end justify-center lg:pe-14 pe-0">
-            <Image
-              aria-hidden
-              // src="/face_cropped.png"
-              src="/squared.png"
-              alt="Globe icon"
-              width={300}
-              height={300}
-              className="justify-self-center"
-            />
-          </div>
+        <FadeIn>
+          <div className="flex lg:flex-row flex-col lg:space-y-0 space-y-14 center w-full justify-center">
+            {/* <EyeClosed className="w-1/3 center animate-pulse" size={100} /> */}
+            <div className="flex lg:w-1/2 w-full lg:justify-end justify-center lg:pe-14 pe-0">
+              <Image
+                aria-hidden
+                // src="/face_cropped.png"
+                src="/squared.png"
+                alt="Globe icon"
+                width={300}
+                height={300}
+                className="justify-self-center"
+              />
+            </div>
 
-          {/* bullet points */}
-          <div className="flex lg:w-1/2 w-full justify-center">
-            <ul className="list-disc space-y-3 font-light max-w-md lg:px-10">
-              <div className="flex w-full relative lg:justify-start justify-center mb-[20px]">
-                <div className="h-px bg-white w-20 my-4"></div>
-                <h2 className="text-2xl font-normal lg:justify-self-start justify-self-center mx-5">
-                  [ TL;DR ]
-                </h2>
-                <div className="h-px bg-white w-20 my-4"></div>
-              </div>
+            {/* bullet points */}
+            <div className="flex lg:w-1/2 w-full justify-center">
+              <ul className="list-disc space-y-3 font-light max-w-md lg:px-10">
+                <div className="flex w-full relative lg:justify-start justify-center mb-[20px]">
+                  <div className="h-px bg-white w-20 my-4"></div>
+                  <h2 className="text-2xl font-normal lg:justify-self-start justify-self-center mx-5">
+                    [ TL;DR ]
+                  </h2>
+                  <div className="h-px bg-white w-20 my-4"></div>
+                </div>
 
-              <li className="text-light-green">Data Scientist @ US Naval Base</li>
-              <li className="text-light-green">B.S. in CS @ University of Southern California (USC)</li>
-              <p className="text-sm">& Minor in 3D-Animation</p>
-              <p className="text-sm">2024, Summa Cum Laude</p>
-              <li>T3 Secret Clearance</li>
-              <p className="pt-5">
-                Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
-              </p>
-            </ul>
+                <li className="text-light-green">Software Engineer @ Applied Intuition</li>
+                <li className="text-light-green">B.S. in CS @ University of Southern California (USC)</li>
+                <p className="text-sm pl-4">& Minor in 3D-Animation</p>
+                <p className="text-sm pl-4">2024, Summa Cum Laude</p>
+                <li>Top Secret Clearance</li>
+                <p className="pt-5">
+                  Excited about building intuitive and efficient human-computer collaboration through AI in XR and robotics  :)
+                </p>
+              </ul>
+            </div>
           </div>
-        </div>
+        </FadeIn>
 
 
         {/* verticals */}
@@ -88,7 +93,12 @@ export default function Home() {
         <div className="flex-row w-full space-y-5">
           
           <SectionTitle title={"SIDE QUESTS"}/>
-          <p className="flex w-full justify-center pb-[40px]">[ Remembering I have free will in an open-world environment ]</p>
+          <FadeIn><p className="flex w-full justify-center pb-[40px]">[ Scavenging in an open world ]</p></FadeIn>
+
+          <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
+            <HalfthoughtCard/>
+            <SidetrekdCard/>
+          </div>
 
           <div className="flex lg:flex-row flex-col w-full lg:space-x-5 lg:space-y-0 space-y-10 space-x-0">
             <CringeCanonCard/>
