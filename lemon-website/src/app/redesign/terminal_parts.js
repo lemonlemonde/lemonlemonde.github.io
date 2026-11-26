@@ -130,6 +130,7 @@ const NAME = "MIRU JUN";
 
 export function Splash() {
     const [phase, setPhase] = useState("show"); // show -> skip -> done
+    const doneCleanup = useRef(() => {});
 
     useEffect(() => {
         try { localStorage.setItem(SEEN_KEY, "1"); } catch (e) { /* private mode etc. */ }
@@ -137,17 +138,23 @@ export function Splash() {
         const T = splashTiming();
         // normally removed when the slide-up finishes (onAnimationEnd); this is only a backstop
         const gone = setTimeout(() => setPhase("done"), T.done + 1500);
-        const skip = () => { setPhase("skip"); setTimeout(() => setPhase("done"), 1000); };
+        // skipping only applies while the splash is still up (never re-show a finished one)
+        const skip = () => { setPhase((p) => (p === "done" ? p : "skip")); setTimeout(() => setPhase("done"), 1000); };
         window.addEventListener("keydown", skip, { once: true });
+        doneCleanup.current = () => window.removeEventListener("keydown", skip);
         return () => { clearTimeout(gone); window.removeEventListener("keydown", skip); };
     }, []);
+    useEffect(() => { if (phase === "done") doneCleanup.current(); }, [phase]);
 
+    // once finished, stop listening for skip keys
+    // (the listener is also removed on unmount)
     if (phase === "done") return null;
+    const skipClick = () => { setPhase((p) => (p === "done" ? p : "skip")); setTimeout(() => setPhase("done"), 1000); };
     return (
         <div
             className={`t-splash ${phase === "skip" ? "t-splash-skipped" : ""}`}
             onAnimationEnd={(e) => { if (e.target === e.currentTarget && e.animationName === "sp-wipe") setPhase("done"); }}
-            onClick={() => { setPhase("skip"); setTimeout(() => setPhase("done"), 1000); }}
+            onClick={skipClick}
             role="presentation"
         >
             <div className="t-splash-inner">
