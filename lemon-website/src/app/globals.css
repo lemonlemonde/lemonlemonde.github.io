@@ -2,20 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* the site is designed dark-only; light-mode visitors get the same dark theme */
 :root {
-  --background: #ffffff;
-  --foreground: hsl(0, 0%, 26%);
-  --hover-tint: #ecf6e8;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    /* --slight-blue: #091735; */
-    --slight-blue: #041231;
-    --hover-tint: #14221a;
-    --foreground: #ededed;
-  }
+  color-scheme: dark;
+  --background: #0a0a0a;
+  --slight-blue: #041231;
+  --foreground: #ededed;
+  --hover-tint: #14221a;
 }
 
 .blue-gradient-bg {

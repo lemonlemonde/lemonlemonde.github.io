@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono, Tilt_Neon } from "next/font/google";
 import "./globals.css";
+import { pageMetadata } from "./page_metadata";
+// redesign prototype: page-to-page splash (only for links marked data-transition)
+import PageTransition from "./redesign/page_transition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,17 +20,20 @@ const tiltNeon = Tilt_Neon({
 });
 
 export const metadata = {
-  title: "Miru Jun!",
-  description: "Personal website to show pretty pics and vids of my progress",
+  ...pageMetadata("Miru Jun · Software Engineer"),
+  metadataBase: new URL("https://miru.sh"),
+  // project pages render as "<Project> · Miru Jun"
+  title: { default: "Miru Jun · Software Engineer", template: "%s · Miru Jun" },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${tiltNeon.variable} antialiased`}
       >
         {children}
+        <PageTransition />
       </body>
     </html>
   );

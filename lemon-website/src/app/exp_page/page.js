@@ -5,7 +5,10 @@ import Card from "../components/card";
 import ProjectCard from "../components/project_card";
 import MemorySpaceCard from "../components/memory_space_card";
 import Footer from "../components/footer";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("Experience", "Miru Jun's work experience.");
 
 export default function ExpPage() {
     return (

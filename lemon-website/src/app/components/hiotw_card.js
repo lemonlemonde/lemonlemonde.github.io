@@ -12,7 +12,7 @@ export default function HIOTWCard() {
 
             <div className="flex flex-col">
                 {/* <div className="flex w-full md:justify-start justify-center px-20">
-                    <iframe className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/GzsNL7DX1Fc?si=ypBoQ8q4HIW4zXUD" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
+                    <iframe loading="lazy" className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/GzsNL7DX1Fc?si=ypBoQ8q4HIW4zXUD" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
                 </div> */}
                 <p className="flex w-full justify-center italic">[ no video yet ]</p>
                 <div className="flex-row w-full p-5 space-y-5">

@@ -1,0 +1,537 @@
+/* Redesign prototype: whimsical terminal.
+   Cream paper, ink, one loud lime. Everything monospace and on a visible hairline grid,
+   with big grotesk headlines, ASCII + symbol details, and a CLI boot splash. */
+
+.t-page {
+  --cream: #f7f5ec;
+  --ink: #1b1b19;
+  --muted: #6f6d66;
+  --line: rgba(27, 27, 25, 0.14);
+  --lime: #a0ea6d; /* accent: between soft lime + vivid fresh green (name kept from the earlier lime) */
+  min-height: 100vh;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: clip; /* cards slide in from beyond the edges */
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+.t-sans { font-family: var(--font-geist-sans), system-ui, sans-serif; }
+.t-muted { color: var(--muted); }
+
+/* ---------- grid: cells share hairline borders, like a TUI ---------- */
+.t-grid { border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.t-cell { border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+/* clickable cells flood with lime */
+.t-hot {
+  position: relative;
+  background-image: linear-gradient(var(--lime), var(--lime));
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 100% 0%;
+  transition: background-size 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.t-hot:hover { background-size: 100% 100%; }
+.t-hot:active { background-size: 100% 100%; filter: brightness(0.94); }
+.t-stretch::after { content: ""; position: absolute; inset: 0; }
+.t-above { position: relative; z-index: 1; }
+
+.t-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.t-prompt::before { content: "$ "; color: var(--muted); }
+
+.t-link {
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s, background 0.2s;
+}
+.t-link:hover { text-decoration-color: var(--ink); background: var(--lime); }
+
+/* glyph "icons" wiggle when their cell is hovered */
+.t-glyph { display: inline-block; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.t-hot:hover .t-glyph { transform: rotate(-14deg) scale(1.25); }
+
+/* thumbnails: grayscale + a little contrast, color on hover */
+.t-thumb { aspect-ratio: 16 / 10; overflow: hidden; border: 1px solid var(--line); background: #ebe8dd; }
+/* YouTube thumbnails are 4:3 with baked-in letterbox bars: zoom past them */
+.t-thumb img.t-yt { transform: scale(1.34); }
+.t-hot:hover .t-thumb img.t-yt { transform: scale(1.4); }
+.t-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* --color (0..1) is set per card from its distance to the screen's centre */
+  filter: grayscale(calc(1 - var(--color, 0))) contrast(calc(1.1 - var(--color, 0) * 0.1));
+  transition: filter 0.25s linear, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.t-hot:hover .t-thumb img { filter: none; transform: scale(1.04); }
+.t-thumb-ascii {
+  display: grid;
+  place-items: center;
+  font-size: 2.2rem;
+  color: var(--muted);
+  background:
+    repeating-linear-gradient(0deg, transparent 0 11px, var(--line) 11px 12px),
+    #ebe8dd;
+}
+
+.t-cursor { display: inline-block; margin-left: 0.15em; animation: t-blink 1s steps(1) infinite; }
+@keyframes t-blink { 50% { opacity: 0; } }
+
+/* dotted leader used in key/value lines */
+.t-kv { display: flex; gap: 0.5rem; align-items: baseline; }
+.t-kv > .t-fill { flex: 1; border-bottom: 1px dotted var(--muted); transform: translateY(-4px); min-width: 1rem; }
+
+/* staggered headline words, Sunday-style */
+.t-stagger > span { display: block; }
+@media (min-width: 640px) { .t-stagger > span { white-space: nowrap; } }
+.t-stagger .t-cursor { font-size: 0.55em; vertical-align: 0.15em; }
+@keyframes t-rise { from { opacity: 0; transform: translateY(0.4em); } }
+.t-rise { animation: t-rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+/* ---------- ASCII portrait ---------- */
+.t-portrait { position: relative; margin: 0; width: 100%; background: var(--cream); overflow: hidden; }
+.t-ascii {
+  margin: 0;
+  line-height: 1;
+  color: var(--ink);
+  white-space: pre;
+  overflow: hidden;
+}
+.t-portrait-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.t-portrait:hover .t-portrait-img { opacity: 1; }
+
+/* ---------- splash ----------
+   All CSS: starts on first paint and stays smooth while the page loads behind it.
+   Timing variables (keep in sync with splash_timing.js); short version for return visits / lite. */
+:root {
+  --sp-exit: 0.8s;   /* wipe starts */
+  --sp-wipe: 0.5s;   /* wipe duration */
+  --sp-gap: 30ms;    /* between glyphs popping in */
+  --sp-flip: 260ms;  /* first glyph starts turning into its letter */
+  --sp-fgap: 32ms;   /* between neighbouring letters flipping */
+  --sp-noise: 95ms;  /* faint noise character between glyph and letter */
+  --sp-type: 0.6s;   /* the random line typing out */
+}
+html[data-returning], html[data-lite] {
+  --sp-exit: 0.33s; --sp-wipe: 0.35s; --sp-gap: 12ms; --sp-flip: 100ms;
+  --sp-fgap: 14ms; --sp-noise: 50ms; --sp-type: 0.28s;
+}
+.t-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--lime);
+  color: var(--ink);
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  cursor: pointer;
+  /* transform (not clip-path) so the slide runs on the compositor and stays smooth even
+     while the page is busy starting up behind it */
+  will-change: transform;
+  animation: sp-wipe var(--sp-wipe) cubic-bezier(0.76, 0, 0.24, 1) var(--sp-exit) forwards;
+}
+.t-splash-skipped { animation-delay: 0s; animation-duration: 0.35s; }
+@keyframes sp-wipe { to { transform: translateY(-100%); visibility: hidden; } }
+
+.t-splash-inner { display: flex; flex-direction: column; align-items: center; gap: 1.6rem; }
+.t-splash-mark {
+  display: flex;
+  align-items: center;
+  gap: 0.06em;
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  min-height: 1.2em;
+}
+.t-splash-space { display: inline-block; width: 0.4em; }
+
+/* one slot per letter: glyph pops in -> faint noise -> letter. Only opacity/transform animate. */
+.t-splash-slot { position: relative; display: inline-grid; place-items: center; width: 0.95em; height: 1.15em; }
+.t-splash-slot > :not(.t-splash-caret) { grid-area: 1 / 1; }
+.t-splash-g {
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  animation:
+    sp-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) calc(20ms + var(--sp-gap) * var(--j)) forwards,
+    sp-out 0.22s ease calc(var(--sp-flip) + var(--sp-fgap) * var(--j)) forwards;
+}
+.t-splash-glyph { width: 0.9em; height: 0.9em; }
+.t-splash-noise {
+  font-size: 0.42em;
+  font-weight: 500;
+  opacity: 0;
+  animation: sp-flash var(--sp-noise) steps(1) calc(var(--sp-flip) + var(--sp-fgap) * var(--j));
+}
+.t-splash-letter {
+  opacity: 0;
+  transform: scale(0.7);
+  animation: sp-in 0.28s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--sp-flip) + var(--sp-fgap) * var(--j) + var(--sp-noise)) forwards;
+}
+@keyframes sp-pop { from { opacity: 0; transform: translateY(6px) scale(0.6); } to { opacity: 1; transform: none; } }
+@keyframes sp-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(0.6); } }
+@keyframes sp-flash { from, to { opacity: 0.45; } }
+@keyframes sp-in { to { opacity: 1; transform: none; } }
+
+/* the cursor walks along: each slot shows it from its own glyph until the next one arrives;
+   the last slot keeps it, blinking */
+.t-splash-caret {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  font-size: 0.55em;
+  transform: translate(0.15em, -30%);
+  opacity: 0;
+  animation: sp-caret-flash var(--sp-gap) steps(1) calc(20ms + var(--sp-gap) * var(--j));
+}
+@keyframes sp-caret-flash { from, to { opacity: 1; } }
+@keyframes sp-caret-on { to { opacity: 1; } }
+.t-last .t-splash-caret {
+  animation:
+    sp-caret-on 0.01s calc(20ms + var(--sp-gap) * var(--j)) forwards,
+    t-blink 1s steps(1) calc(20ms + var(--sp-gap) * var(--j)) infinite;
+}
+
+/* the log: one line (picked before paint via html[data-phrase]) types out, then [ok] */
+.t-splash-log { font-size: clamp(0.42rem, 1.9vw, 0.8rem); line-height: 1.7; width: max-content; max-width: 94vw; }
+.t-splash-log p { display: block; white-space: nowrap; }
+.t-ph { display: none !important; }
+html:not([data-phrase]) .t-ph[data-k="0"],
+html[data-phrase="0"] .t-ph[data-k="0"], html[data-phrase="1"] .t-ph[data-k="1"],
+html[data-phrase="2"] .t-ph[data-k="2"], html[data-phrase="3"] .t-ph[data-k="3"],
+html[data-phrase="4"] .t-ph[data-k="4"], html[data-phrase="5"] .t-ph[data-k="5"],
+html[data-phrase="6"] .t-ph[data-k="6"], html[data-phrase="7"] .t-ph[data-k="7"],
+html[data-phrase="8"] .t-ph[data-k="8"], html[data-phrase="9"] .t-ph[data-k="9"],
+html[data-phrase="10"] .t-ph[data-k="10"] { display: block !important; }
+.t-type {
+  display: inline-block;
+  clip-path: inset(0 100% 0 0);
+  animation: sp-type var(--sp-type) steps(var(--n)) 30ms forwards;
+}
+@keyframes sp-type { to { clip-path: inset(0 0 0 0); } }
+.t-ok { display: inline-block; opacity: 0; animation: sp-pop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) calc(var(--sp-type) + 30ms) forwards; }
+.t-dots { display: inline-block; width: 3em; border-bottom: 1px dotted currentColor; transform: translateY(-3px); }
+/* progress bar + percentage, filled alongside the typing */
+.t-bar {
+  display: inline-block;
+  width: 10ch;
+  height: 0.85em;
+  vertical-align: -0.08em;
+  background:
+    repeating-linear-gradient(90deg, currentColor 0 0.85ch, transparent 0.85ch 1ch) 0 0 / 100% 100% no-repeat,
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, 0.18) 0 0.85ch, transparent 0.85ch 1ch);
+  background-size: 0% 100%, 100% 100%;
+  animation: sp-bar var(--sp-type) steps(10) 30ms forwards;
+}
+@keyframes sp-bar { to { background-size: 100% 100%, 100% 100%; } }
+@property --pct { syntax: "<integer>"; inherits: false; initial-value: 0; }
+.t-pct { counter-reset: pct var(--pct); animation: sp-pct var(--sp-type) linear 30ms forwards; }
+.t-pct::after { content: counter(pct) "%"; }
+@keyframes sp-pct { to { --pct: 100; } }
+
+.t-splash-skip { position: absolute; bottom: 1.5rem; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.55; }
+@keyframes t-pop { from { opacity: 0; transform: translateY(6px) scale(0.6); } }
+.t-pop { display: inline-block; animation: t-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .t-splash { display: none; }
+  .t-rise, .t-pop, .t-cursor { animation: none; }
+  .t-glyph, .t-thumb img, .t-splash { transition: none; }
+}
+
+/* ---------- scroll reveals: scan in top-down, with a bright scan line ---------- */
+[data-reveal] {
+  position: relative;
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s);
+}
+[data-reveal].t-in { clip-path: inset(0 0 0 0); }
+[data-reveal]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: var(--lime);
+  box-shadow: 0 0 12px var(--lime);
+  opacity: 0;
+  pointer-events: none;
+}
+[data-reveal].t-in::after { animation: t-scan 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0s) both; }
+@keyframes t-scan {
+  0% { top: 0; opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* ---------- selection, click burst ---------- */
+.t-page ::selection { background: var(--lime); color: var(--ink); }
+.t-burst {
+  position: fixed;
+  z-index: 90;
+  pointer-events: none;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1b1b19;
+  transform: translate(-50%, -50%);
+  animation: t-burst 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@keyframes t-burst {
+  to { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(90deg) scale(0.4); opacity: 0; }
+}
+
+[data-parallax] { display: block; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { clip-path: none; transition: none; }
+  [data-reveal]::after { display: none; }
+  .t-hot { transition: none; }
+}
+
+/* ---------- rotating cards (driven from interactions.js) ---------- */
+:is([data-card], .t-proj > :not(h1, .t-links)) {
+  position: relative;
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+/* landing: a rainbow glow sweeps once around the card's outline */
+@property --sweep { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+[data-landing] { position: relative; }
+:is([data-card], .t-proj > :not(h1, .t-links))::after,
+[data-landing]::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: 3;
+  pointer-events: none;
+  padding: 2px;
+  opacity: 0;
+  background: conic-gradient(from var(--sweep), #ff6b8b, #ffb35c, #c9f25a, #4fe3b8, #6b8cff, #c77dff, #ff6b8b);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 6px rgba(160, 234, 109, 0.6));
+}
+:is([data-card], .t-proj > :not(h1, .t-links)).t-landed::after,
+[data-landing].t-landed::after { animation: t-sweep 1.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+@keyframes t-sweep {
+  0% { opacity: 0; --sweep: 0deg; }
+  20% { opacity: 1; }
+  100% { opacity: 0; --sweep: 320deg; }
+}
+
+/* rainbow sparkles popping off the edges */
+.t-spark {
+  position: absolute;
+  z-index: 4;
+  pointer-events: none;
+  font-size: 18px;
+  line-height: 1;
+  transform: translate(-50%, -50%) scale(0);
+  text-shadow: 0 0 8px currentColor;
+  animation: t-spark 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes t-spark {
+  0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+  35% { transform: translate(calc(-50% + var(--dx) * 0.6), calc(-50% + var(--dy) * 0.6)) scale(1.2) rotate(60deg); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2) rotate(140deg); opacity: 0; }
+}
+
+/* ---------- links dock: bottom row on phones, left column on wide screens ---------- */
+.t-dock {
+  position: fixed;
+  z-index: 40;
+  display: flex;
+  left: 0;
+  right: 0;
+  bottom: 12px;
+  margin-inline: auto;
+  width: fit-content;
+  background: var(--cream);
+  border-top: 1px solid var(--line);
+  border-left: 1px solid var(--line);
+}
+/* at the bottom the dock steps aside (its icons have flown to the footer) */
+.t-dock { transition: opacity 0.25s; }
+.t-dock-off { opacity: 0; pointer-events: none; }
+.t-dock-key {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 1024px) {
+  .t-dock {
+    flex-direction: column;
+    left: 20px;
+    right: auto;
+    top: 0;
+    bottom: 0;
+    margin-inline: 0;
+    margin-block: auto;
+    height: fit-content;
+  }
+}
+
+/* ---------- project pages: restyle the existing page content ---------- */
+.t-proj { font-size: 0.9rem; line-height: 1.7; }
+.t-proj > :not(h1) { width: 100%; }
+/* the two-column body sits in a hairline cell, like the homepage grid */
+.t-proj > div:has(iframe, img, video, ul) {
+  border: 1px solid var(--line);
+  padding: clamp(1rem, 3vw, 2rem);
+  background: var(--cream);
+}
+.t-proj .font-extralight { font-weight: 400; color: var(--muted); }
+.t-proj ul.list-disc { list-style: none; margin-left: 0; }
+.t-proj ul.list-disc > li { position: relative; padding-left: 1.4em; }
+.t-proj ul.list-disc > li::before { content: "▸"; position: absolute; left: 0; color: var(--ink); }
+/* old green accents: tagline becomes a sans lead, tech stack becomes lime chips */
+.t-proj p.text-light-green {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  font-weight: 500;
+  line-height: 1.35;
+  color: var(--ink);
+}
+.t-proj li.text-light-green { color: var(--ink); padding-left: 0; }
+.t-proj li.text-light-green::before { content: none; }
+.t-proj li.text-light-green i { font-style: normal; background: var(--lime); padding: 0.1em 0.4em; }
+.t-proj b.text-light-green { color: var(--ink); background: var(--lime); font-style: normal; padding: 0 0.2em; }
+.t-proj .text-light-green { color: var(--ink); }
+/* old pink inline links -> bracketed terminal links */
+.t-proj a.text-red-300 {
+  color: var(--ink);
+  font-style: normal;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.2s, background 0.2s;
+}
+.t-proj a.text-red-300::before { content: "["; }
+.t-proj a.text-red-300::after { content: "]"; }
+.t-proj a.text-red-300:hover { text-decoration-color: var(--ink); background: var(--lime); }
+/* media: hairline frame, greyscale away from the middle of the screen, colour on hover */
+.t-proj :is(iframe, video, img) {
+  border: 1px solid var(--line);
+  background: #ebe8dd;
+  filter: grayscale(calc(1 - var(--color, 0)));
+  transition: filter 0.25s linear;
+}
+.t-proj :is(iframe, video, img):hover { filter: none; }
+.t-proj iframe + iframe, .t-proj video + video { margin-top: 1rem; }
+.t-proj h1 .t-cursor { font-size: 0.5em; vertical-align: 0.2em; }
+
+/* bullet descriptions in a readable sans; tech stack + attributions stay monospace */
+.t-proj ul.list-disc > li:not(.text-light-green) {
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 400;
+}
+.t-proj ul.list-disc > li:not(.text-light-green) + li { margin-top: 0.35rem; }
+
+/* ---------- project cards: half gradient + accent border on hover (small keys keep the full fill) ---------- */
+article.t-hot {
+  background-image: linear-gradient(to top, color-mix(in srgb, var(--lime) 60%, transparent), transparent);
+  transition: background-size 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+article.t-hot:hover {
+  background-size: 100% 55%;
+  box-shadow: inset 0 0 0 2px var(--lime);
+}
+article.t-hot:active { background-size: 100% 70%; filter: none; }
+
+/* ---------- touch screens: no hover states (a tap would leave them stuck on) ---------- */
+@media (hover: none) {
+  .t-hot:hover, article.t-hot:hover { background-size: 100% 0%; box-shadow: none; }
+  .t-hot:hover .t-glyph { transform: none; }
+  .t-hot:hover .t-thumb img { transform: none; filter: grayscale(calc(1 - var(--color, 0))) contrast(calc(1.1 - var(--color, 0) * 0.1)); }
+  .t-hot:hover .t-thumb img.t-yt { transform: scale(1.34); }
+  .t-link:hover { background: none; text-decoration-color: var(--line); }
+  .t-proj a.text-red-300:hover { background: none; text-decoration-color: var(--line); }
+  .t-proj :is(iframe, video, img):hover { filter: grayscale(calc(1 - var(--color, 0))); }
+}
+
+/* ---------- citations at the bottom of project pages ----------
+   Some entries are plain <li>s, others are an <li> + link row wrapped in a <div>;
+   give them all the same bullet, indent, size and spacing, and let link rows wrap. */
+.t-proj > ul.list-disc { padding-top: 0.5rem; width: 100%; display: flex; flex-direction: column; gap: 1.25rem; }
+.t-proj > ul.list-disc > * { margin: 0 !important; }
+.t-proj.t-proj > ul.list-disc li {
+  position: relative;
+  padding-left: 1.4em;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--muted);
+  list-style: none;
+}
+.t-proj > ul.list-disc li::before { content: "▸"; position: absolute; left: 0; color: var(--ink); }
+.t-proj > ul.list-disc li b { font-weight: 600; }
+.t-proj > ul.list-disc .flex:not(.flex-col) {
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  padding-left: 1.4em;
+  margin-top: 0.4rem;
+  font-size: 0.8rem;
+}
+.t-proj > ul.list-disc .flex:not(.flex-col) > * { margin-left: 0 !important; }
+
+/* splash length per visit (see splash_timing.js): hero text rises relative to the wipe */
+:root { --splash-exit: var(--sp-exit); }
+
+/* ---------- lite mode (slow devices, see perf.js): keep the look, drop the expensive bits ---------- */
+html[data-lite] [data-card],
+html[data-lite] .t-proj > * { will-change: auto; transform: none !important; }
+html[data-lite] [data-parallax] { will-change: auto; transform: none !important; }
+html[data-lite] .t-thumb img,
+html[data-lite] .t-proj :is(iframe, video, img) { filter: none !important; transition: transform 0.6s ease; }
+html[data-lite] :is([data-card], .t-proj > :not(h1, .t-links), [data-landing])::after { filter: none; }
+html[data-lite] .t-spark { text-shadow: none; }
+
+/* ---------- the portrait's cow easter egg ---------- */
+.t-cow {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(6px) scale(0.9);
+  pointer-events: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.t-cow-ready { opacity: 1; transform: none; pointer-events: auto; }
+.t-cow svg { transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.t-cow:hover svg, .t-cow[aria-pressed="true"] svg { transform: rotate(-10deg) scale(1.15); }
+.t-cow:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* links row under project titles: wrap whole links onto new lines instead of breaking
+   a link's own text in half ("[CHI25 --" / "Interviews]") */
+.t-proj .t-links { flex-wrap: wrap; gap: 0.35rem 1.25rem; }
+.t-proj .t-links > * { margin: 0 !important; white-space: nowrap; }

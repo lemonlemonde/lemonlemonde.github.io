@@ -1,8 +1,10 @@
 
-import Header from "../components/header";
-import Footer from "../components/footer";
+import ProjectShell, { ProjectTitle } from "../redesign/project_shell";
 import FormattedLinks from "../components/formatted_links";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("NASA SUITS Challenge", "HoloLens 2 AR application for astronaut navigation, terrain mapping, and telemetry, built for the NASA SUITS challenge.");
 
 export default function NasaSuitsPage() {
     const links = [
@@ -11,22 +13,16 @@ export default function NasaSuitsPage() {
     ];
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-            <Header />
-
-
-            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <h2 className="text-3xl font-normal">
-                    [ NASA SUITS Challenge 2022-2023 ]
-                </h2>
+        <ProjectShell>
+            <main className="t-proj flex flex-col gap-8 pt-6 w-full">
+                <ProjectTitle>NASA SUITS Challenge 2022-2023</ProjectTitle>
                 <FormattedLinks links={links}/>
 
                 {/* body */}
                 <div className="flex lg:flex-row flex-col lg:space-x-5 space-x-0">
                     {/* ---- left side ---- */}
                     <div className="flex flex-col lg:w-1/2 w-full space-y-5">
-                        <iframe className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/d4mOWeIuvMI?si=lGyMPzA5D2zBeocA" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
+                        <iframe loading="lazy" className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/d4mOWeIuvMI?si=lGyMPzA5D2zBeocA" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
                         <embed
                             src="/AEGIS_NASA_SUITS_2023_Retrospective_Paper_.pdf"
                             type="application/pdf"
@@ -38,7 +34,7 @@ export default function NasaSuitsPage() {
                     {/* right side */}
                     <div className="flex-row lg:w-1/2 w-full space-y-5 lg:mt-0 mt-5">
                         {/* vid */}
-                        <iframe className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/KTqVF-KyONM?si=p0XFqWonPuJh8REk" allow="fullscreen" title="NASA SUITS Challenge USC Berkeley Team Presentation at Johnson Space Center, 5/23/2023"></iframe>
+                        <iframe loading="lazy" className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/KTqVF-KyONM?si=p0XFqWonPuJh8REk" allow="fullscreen" title="NASA SUITS Challenge USC Berkeley Team Presentation at Johnson Space Center, 5/23/2023"></iframe>
                         
                         {/* ---- description ---- */}
                         <p className="text-light-green">An Augmented Reality application on the Microsoft HoloLens2 (with MRTK2) to help astronauts with navigation, localization, terrain mapping, biometric and telemetry data, UIA panel instructions in low-light conditions.</p>
@@ -61,8 +57,6 @@ export default function NasaSuitsPage() {
                     </div>
                 </div>
             </main>
-
-            <Footer/>
-        </div>
+        </ProjectShell>
     );
 }

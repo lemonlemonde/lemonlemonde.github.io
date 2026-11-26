@@ -1,10 +1,12 @@
 
-import Header from "../components/header";
 import InnerLink from "../components/inner_link";
-import Footer from "../components/footer";
+import ProjectShell, { ProjectTitle } from "../redesign/project_shell";
 
 import FormattedLinks from "../components/formatted_links";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("Cringe Canon", "Hackathon project: a web app that turns original-character art into canon character profiles and images you can chat with.");
 
 export default function CringeCanonPage() {
     const links = [
@@ -14,13 +16,9 @@ export default function CringeCanonPage() {
 
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-            <Header />
-            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <h2 className="text-3xl font-normal">
-                    [ Cringe Canon ]
-                </h2>
+        <ProjectShell>
+            <main className="t-proj flex flex-col gap-8 pt-6 w-full">
+                <ProjectTitle>Cringe Canon</ProjectTitle>
 
                 <FormattedLinks links={links} />
 
@@ -28,7 +26,7 @@ export default function CringeCanonPage() {
                 <div className="flex lg:flex-row flex-col w-full lg:space-x-5 space-x-0 lg:space-y-0 space-y-5">
 
                     <div className="pe-5 lg:w-1/2 w-full">
-                        <iframe className="aspect-video w-full" src="https://www.youtube.com/embed/BPxekdd8YyU?si=t3D3sTv77yzYAsND" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Cringe Canon Demo"></iframe>
+                        <iframe loading="lazy" className="aspect-video w-full" src="https://www.youtube.com/embed/BPxekdd8YyU?si=t3D3sTv77yzYAsND" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Cringe Canon Demo"></iframe>
                     </div>
 
                     <div className="flex flex-col lg:w-1/2 w-full space-y-5">
@@ -51,8 +49,6 @@ export default function CringeCanonPage() {
 
 
             </main>
-
-            <Footer />
-        </div>
+        </ProjectShell>
     );
 }

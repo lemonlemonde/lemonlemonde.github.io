@@ -19,7 +19,7 @@ export default function NasaSuitsCard() {
 
             <div className="flex md:flex-row flex-col md:space-x-5 space-x-0">
                 <div className="flex md:w-1/2 w-full md:justify-start justify-center">
-                    <iframe className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/d4mOWeIuvMI?si=lGyMPzA5D2zBeocA" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
+                    <iframe loading="lazy" className="aspect-[16/9] w-full" src="https://www.youtube.com/embed/d4mOWeIuvMI?si=lGyMPzA5D2zBeocA" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe>
                 </div>
                 <div className="flex-row md:w-1/2 w-full p-5 space-y-5">
                     <p>An Augmented Reality application on the Microsoft HoloLens2 (with MRTK2) to help astronauts with navigation, localization, terrain mapping, biometric and telemetry data, UIA panel instructions in low-light conditions.</p>

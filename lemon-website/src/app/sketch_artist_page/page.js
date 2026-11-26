@@ -1,10 +1,12 @@
 
-import Header from "../components/header";
-import Footer from "../components/footer";
+import ProjectShell, { ProjectTitle } from "../redesign/project_shell";
 import InnerLink from "../components/inner_link";
 import FormattedLinks from "../components/formatted_links";
 import Image from "next/image";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("Sketch Artist", "Local image generation and in-painting pipeline run from the CLI, containerized for NVIDIA Jetson Orin Nano.");
 
 export default function SketchArtistPage() {
     const links = [
@@ -12,15 +14,9 @@ export default function SketchArtistPage() {
     ];
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-            <Header />
-
-
-            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <h2 className="text-3xl font-normal">
-                    [ Sketch Artist ]
-                </h2>
+        <ProjectShell>
+            <main className="t-proj flex flex-col gap-8 pt-6 w-full">
+                <ProjectTitle>Sketch Artist</ProjectTitle>
 
                 <FormattedLinks links={links} />
 
@@ -79,8 +75,6 @@ export default function SketchArtistPage() {
                 </div>
 
             </main>
-
-            <Footer />
-        </div>
+        </ProjectShell>
     );
 }

@@ -1,9 +1,11 @@
 
-import Header from "../components/header";
-import Footer from "../components/footer";
+import ProjectShell, { ProjectTitle } from "../redesign/project_shell";
 import InnerLink from "../components/inner_link";
 import FormattedLinks from "../components/formatted_links";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("Memory Space: Chinatown AR", "Geolocated WebAR experience on Niantic's 8th Wall, exhibited at LA's Union Station to showcase the history of old Chinatown.");
 
 export default function MemorySpacePage() {
     const links = [
@@ -13,15 +15,9 @@ export default function MemorySpacePage() {
     ];
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-            <Header />
-
-
-            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <h2 className="text-3xl font-normal">
-                    [ Memory Space: Chinatown AR ]
-                </h2>
+        <ProjectShell>
+            <main className="t-proj flex flex-col gap-8 pt-6 w-full">
+                <ProjectTitle>Memory Space: Chinatown AR</ProjectTitle>
 
                 <FormattedLinks links={links} />
 
@@ -30,10 +26,10 @@ export default function MemorySpacePage() {
                 <div className="flex lg:flex-row flex-col md:space-x-5 space-x-0">
                     {/* ---- screen vids ---- */}
                     <div className="flex flex-col lg:w-1/2 w-full space-y-5">
-                        <iframe className="aspect-[16/9] w-full" src="https://player.vimeo.com/video/951336252?badge=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;player_id=memory_space&amp;app_id=58479" allow="autoplay; fullscreen" title="Memory Space: Chinatown AR"></iframe>
+                        <iframe loading="lazy" className="aspect-[16/9] w-full" src="https://player.vimeo.com/video/951336252?badge=0&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;autopause=0&amp;player_id=memory_space&amp;app_id=58479" allow="autoplay; fullscreen" title="Memory Space: Chinatown AR"></iframe>
                         <div className="flex w-full lg:justify-between justify-center lg:space-x-0 space-x-5">
-                            <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/956OxNlEtiM?si=42KT6SGpsSu-UDRY" allow="fullscreen" title="MEML Chinatown - Peacock Test (dev)" />
-                            <iframe className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/VbYJ1TKyhqo?si=-ETg_DiC7b5yzBDO" allow="fullscreen" title="MEML Chinatown - SangYuen Store Test" />
+                            <iframe loading="lazy" className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/956OxNlEtiM?si=42KT6SGpsSu-UDRY" allow="fullscreen" title="MEML Chinatown - Peacock Test (dev)" />
+                            <iframe loading="lazy" className="aspect-[9/16] w-1/2 max-w-[200]" src="https://www.youtube.com/embed/VbYJ1TKyhqo?si=-ETg_DiC7b5yzBDO" allow="fullscreen" title="MEML Chinatown - SangYuen Store Test" />
                         </div>
                     </div>
 
@@ -60,8 +56,6 @@ export default function MemorySpacePage() {
                 </div>
 
             </main>
-
-            <Footer />
-        </div>
+        </ProjectShell>
     );
 }

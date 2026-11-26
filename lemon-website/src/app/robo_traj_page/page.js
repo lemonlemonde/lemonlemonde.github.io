@@ -1,10 +1,12 @@
 
-import Header from "../components/header";
-import Footer from "../components/footer";
+import ProjectShell, { ProjectTitle } from "../redesign/project_shell";
 
 import FormattedLinks from "../components/formatted_links";
 import InnerLink from "../components/inner_link";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("Trajectory Improvement with Comparative Language Feedback", "Research on improving robot arm trajectories from comparative natural-language feedback (CoRL 2024).");
 
 export default function RoboTrajPage() {
     const links = [
@@ -14,15 +16,9 @@ export default function RoboTrajPage() {
     ];
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-            <Header />
-
-
-            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <h2 className="text-3xl font-normal">
-                    [ Trajectory Improvement with Comparative Natural Language Feedback]
-                </h2>
+        <ProjectShell>
+            <main className="t-proj flex flex-col gap-8 pt-6 w-full">
+                <ProjectTitle>Trajectory Improvement with Comparative Natural Language Feedback</ProjectTitle>
 
                 <FormattedLinks links={links} />
 
@@ -30,7 +26,7 @@ export default function RoboTrajPage() {
                 <div className="flex lg:flex-row flex-col w-full lg:space-x-5 space-y-5">
 
                     <div className="pe-5 lg:w-1/2 w-full space-y-5">
-                        <iframe className="aspect-video w-full" src="https://www.youtube.com/embed/8xyuCQlTXEg?si=RkNrjyhTDfMsxbhh" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="?"></iframe>
+                        <iframe loading="lazy" className="aspect-video w-full" src="https://www.youtube.com/embed/8xyuCQlTXEg?si=RkNrjyhTDfMsxbhh" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="?"></iframe>
                         <div className="flex w-full justify-between">
                             <video className="max-w-xs w-1/2 h-auto" controls autoPlay muted loop playsInline>
                                 <source src="/blurred_1.mp4" type="video/mp4" />
@@ -86,8 +82,6 @@ export default function RoboTrajPage() {
                         </ul>
 
             </main>
-
-            <Footer />
-        </div>
+        </ProjectShell>
     );
 }

@@ -1,10 +1,12 @@
 
-import Header from "../components/header";
 import InnerLink from "../components/inner_link";
-import Footer from "../components/footer";
+import ProjectShell, { ProjectTitle } from "../redesign/project_shell";
 
 import FormattedLinks from "../components/formatted_links";
+import { pageMetadata } from "../page_metadata";
 
+
+export const metadata = pageMetadata("Estuary", "Framework for multimodal, low-latency socially interactive agents, with a client-server architecture demoed on Quest 3 and Apple Vision Pro.");
 
 export default function EstuaryPage() {
     const links = [
@@ -16,13 +18,9 @@ export default function EstuaryPage() {
 
 
     return (
-        <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-
-            <Header />
-            <main className="flex flex-col p-8 gap-8 row-start-2 sm:items-start max-w-screen-lg w-full">
-                <h2 className="text-3xl font-normal">
-                    [ Estuary: AR Companion Project ]
-                </h2>
+        <ProjectShell>
+            <main className="t-proj flex flex-col gap-8 pt-6 w-full">
+                <ProjectTitle>Estuary: AR Companion Project</ProjectTitle>
 
                 <FormattedLinks links={links} />
 
@@ -30,9 +28,9 @@ export default function EstuaryPage() {
                 <div className="flex lg:flex-row flex-col w-full lg:space-x-5 space-x-0 lg:space-y-0 space-y-5">
 
                     <div className="pe-5 lg:w-1/2 w-full">
-                        {/* <iframe className="aspect-video" src="https://www.youtube.com/embed/GzsNL7DX1Fc?si=ypBoQ8q4HIW4zXUD" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe> */}
-                        <iframe className="aspect-video w-full" src="https://player.vimeo.com/video/1007756913?badge=0&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Estuary: A Multimodal Framework for Low-Latency Realtime Socially Interactive Agents (IVA24_Reel_Ver5)"></iframe>
-                        <iframe className="aspect-video w-full" src="https://www.youtube.com/embed/2RlmenU1FG4?si=gOE98HadVidwUJb2" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="CHI25 -- Interviews"></iframe>
+                        {/* <iframe loading="lazy" className="aspect-video" src="https://www.youtube.com/embed/GzsNL7DX1Fc?si=ypBoQ8q4HIW4zXUD" allow="fullscreen" title="Estuary: IVA24 Reel (Ver5)"></iframe> */}
+                        <iframe loading="lazy" className="aspect-video w-full" src="https://player.vimeo.com/video/1007756913?badge=0&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="Estuary: A Multimodal Framework for Low-Latency Realtime Socially Interactive Agents (IVA24_Reel_Ver5)"></iframe>
+                        <iframe loading="lazy" className="aspect-video w-full" src="https://www.youtube.com/embed/2RlmenU1FG4?si=gOE98HadVidwUJb2" frameorder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" title="CHI25 -- Interviews"></iframe>
                     </div>
 
                     <div className="flex flex-col lg:w-1/2 w-full space-y-5">
@@ -72,8 +70,6 @@ export default function EstuaryPage() {
                 </ul>
 
             </main>
-
-            <Footer />
-        </div>
+        </ProjectShell>
     );
 }

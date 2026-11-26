@@ -57,14 +57,15 @@ export default function Header() {
     return (
         <div className="flex w-full relative justify-center">
             {/* left line */}
-            <motion.h1
+            <motion.div
+                aria-hidden
                 initial={{ color: "#00000", scaleX: 0 }}
                 animate={{ color: "#ededed", scaleX: 1 }}
                 // whileHover={{ color: "#ededed", scaleX: 1 }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="glow-line h-px md:w-48 w-20 my-5 md:me-10 me-4"></div>
-            </motion.h1>
+                <div className="glow-line h-px md:w-48 sm:w-20 w-10 my-5 md:me-10 sm:me-4 me-3"></div>
+            </motion.div>
             
             {/* draggy letters (first+last name) */}
             <div 
@@ -99,18 +100,19 @@ export default function Header() {
                     }}
                 />
 
+                <h1 aria-label="Miru Jun" className="flex">
                 {letters_first.map((letter, index) => (
-                <motion.div
+                <motion.span
                     key={index}
-                    className="relative"
+                    className="relative inline-block"
                     drag="x"
                     dragConstraints={{ left: -180, right: 180 }}
                     onDragStart={() => setDragDistance(0)}
                     onDrag={(event, info) => setDragDistance(info.offset.x)}
                     onDragEnd={() => setTimeout(() => setDragDistance(0), 50)}
                 >
-                    <motion.h1
-                        className="text-4xl italic cursor-grab font-neon neon-green"
+                    <motion.span
+                        className="block text-4xl italic cursor-grab font-neon neon-green"
                         style={mode === "neon" ? flickers[index] : undefined}
                         initial={{ color: "#00000", scaleX: 0 }}
                         animate={{ color: "#ededed", scaleX: 1 }}
@@ -118,26 +120,26 @@ export default function Header() {
                         transition={{ duration: 0.8 }}
                     >
                         {letter}
-                    </motion.h1>
+                    </motion.span>
                     {/* drop wire + standoff clip; moves with the letter when dragged */}
                     <span aria-hidden className="neon-drop" />
                     {index === 0 && <SantaHat />}
-                </motion.div>
+                </motion.span>
                 ))}
 
-                <div className="ms-3 flex w-fit">
+                <span className="ms-3 flex w-fit">
                 {letters_last.map((letter, index) => (
-                <motion.div
+                <motion.span
                     key={index}
-                    className="relative"
+                    className="relative inline-block"
                     drag="x"
                     dragConstraints={{ left: -180, right: 180 }}
                     onDragStart={() => setDragDistance(0)}
                     onDrag={(event, info) => setDragDistance(info.offset.x)}
                     onDragEnd={() => setTimeout(() => setDragDistance(0), 50)}
                 >
-                    <motion.h1
-                        className="text-4xl italic cursor-grab font-neon neon-pink"
+                    <motion.span
+                        className="block text-4xl italic cursor-grab font-neon neon-pink"
                         style={mode === "neon" ? flickers[index + 4] : undefined}
                         initial={{ color: "#00000", scaleX: 0 }}
                         animate={{ color: "#ededed", scaleX: 1 }}
@@ -145,27 +147,29 @@ export default function Header() {
                         transition={{ duration: 0.8 }}
                     >
                         {letter}
-                    </motion.h1>
+                    </motion.span>
                     {/* drop wire + standoff clip; moves with the letter when dragged */}
                     <span aria-hidden className="neon-drop" />
-                </motion.div>
+                </motion.span>
                 ))}
-                </div>
+                </span>
+                </h1>
             </div>
             
 
             {/* right line */}
-            <motion.h1
+            <motion.div
+                aria-hidden
                 initial={{ color: "#00000", scaleX: 0 }}
                 animate={{ color: "#ededed", scaleX: 1 }}
                 // whileHover={{ color: "#ededed", scaleX: 1 }}
                 transition={{ duration: 0.8 }}
             >
-                <div className="glow-line h-px md:w-48 w-20 my-5 md:ms-10 ms-4"></div>
-            </motion.h1>
+                <div className="glow-line h-px md:w-48 sm:w-20 w-10 my-5 md:ms-10 sm:ms-4 ms-3"></div>
+            </motion.div>
 
             {/* shadow clone */}
-            <div className="absolute w-fit -z-10">
+            <div aria-hidden className="absolute w-fit -z-10">
                 <div className="flex -z-10">
                     <div 
                         className="flex max-w-screen-lg cursor-pointer -z-10"
@@ -174,16 +178,16 @@ export default function Header() {
                             }}
                     >
                         {letters_first.map((letter, index) => (
-                            <motion.h1
+                            <motion.span
                                 key={index}
-                                className="text-4xl italic cursor-grab font-neon"
+                                className="block text-4xl italic cursor-grab font-neon"
                                 initial={{ color: "#00000", scaleX: 0 }}
                                 animate={{ color: "#434343", scaleX: 1 }}
                                 // whileHover={{ color: "#ededed", scaleX: 1 }}
                                 transition={{ duration: 0.8 }}
                             >
                                 {letter}
-                            </motion.h1>
+                            </motion.span>
                         ))}
                     </div>
                     <div 
@@ -193,16 +197,16 @@ export default function Header() {
                             }}
                     >
                         {letters_last.map((letter, index) => (
-                            <motion.h1
+                            <motion.span
                                 key={index}
-                                className="text-4xl italic cursor-grab font-neon"
+                                className="block text-4xl italic cursor-grab font-neon"
                                 initial={{ color: "#00000", scaleX: 0 }}
                                 animate={{ color: "#434343", scaleX: 1 }}
                                 // whileHover={{ color: "#ededed", scaleX: 1 }}
                                 transition={{ duration: 0.8 }}
                             >
                                 {letter}
-                            </motion.h1>
+                            </motion.span>
                         ))}
                     </div>
 

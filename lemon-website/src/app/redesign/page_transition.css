@@ -1,0 +1,25 @@
+/* page-to-page splash (see page_transition.js). Global because it outlives the page. */
+.pt-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  background: var(--lime);
+  color: #1b1b19;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+.pt-cover { animation: pt-in 0.28s cubic-bezier(0.76, 0, 0.24, 1) both; }
+.pt-reveal { animation: pt-out 0.38s cubic-bezier(0.76, 0, 0.24, 1) both; }
+/* transforms (not clip-path): compositor-driven, smooth while the next page is loading */
+@keyframes pt-in { from { transform: translateY(-100%); } to { transform: none; } }
+@keyframes pt-out { from { transform: none; } to { transform: translateY(100%); } }
+
+/* the splash glyph styles live in redesign.css; this screen sits outside .t-page, so give it the lime */
+.pt-screen { --lime: #a0ea6d; }
+.pt-mark {
+  font-size: clamp(1.3rem, 4.6vw, 3.2rem) !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 92vw;
+}
