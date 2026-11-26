@@ -9,8 +9,8 @@
   color: #1b1b19;
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
-.pt-cover { animation: pt-in 0.28s cubic-bezier(0.76, 0, 0.24, 1) both; }
-.pt-reveal { animation: pt-out 0.38s cubic-bezier(0.76, 0, 0.24, 1) both; }
+.pt-cover { animation: pt-in 0.2s cubic-bezier(0.76, 0, 0.24, 1) both; }
+.pt-reveal { animation: pt-out 0.3s cubic-bezier(0.76, 0, 0.24, 1) both; }
 /* transforms (not clip-path): compositor-driven, smooth while the next page is loading */
 @keyframes pt-in { from { transform: translateY(-100%); } to { transform: none; } }
 @keyframes pt-out { from { transform: none; } to { transform: translateY(100%); } }

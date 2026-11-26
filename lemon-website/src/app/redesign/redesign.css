@@ -117,13 +117,13 @@
    All CSS: starts on first paint and stays smooth while the page loads behind it.
    Timing variables (keep in sync with splash_timing.js); short version for return visits / lite. */
 :root {
-  --sp-exit: 0.8s;   /* wipe starts */
+  --sp-exit: 1.15s;  /* wipe starts */
   --sp-wipe: 0.5s;   /* wipe duration */
-  --sp-gap: 30ms;    /* between glyphs popping in */
-  --sp-flip: 260ms;  /* first glyph starts turning into its letter */
-  --sp-fgap: 32ms;   /* between neighbouring letters flipping */
-  --sp-noise: 95ms;  /* faint noise character between glyph and letter */
-  --sp-type: 0.6s;   /* the random line typing out */
+  --sp-gap: 40ms;    /* between glyphs popping in */
+  --sp-flip: 380ms;  /* first glyph starts turning into its letter */
+  --sp-fgap: 42ms;   /* between neighbouring letters flipping */
+  --sp-noise: 110ms; /* faint noise character between glyph and letter */
+  --sp-type: 0.85s;  /* the random line typing out */
 }
 html[data-returning], html[data-lite] {
   --sp-exit: 0.33s; --sp-wipe: 0.35s; --sp-gap: 12ms; --sp-flip: 100ms;

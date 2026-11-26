@@ -27,7 +27,7 @@ export const SIDE_TASKS = [
 // these numbers are for the JS that has to line up with it).
 export const SPLASH = {
     //          wipe starts / gone | glyph pop gap | flip start / gap / noise | line typing
-    first:     { exit: 800, done: 1300, glyphGap: 30, flipAt: 260, flipGap: 32, noise: 95, type: 600 },
+    first:     { exit: 1150, done: 1650, glyphGap: 40, flipAt: 380, flipGap: 42, noise: 110, type: 850 },
     returning: { exit: 330, done: 680,  glyphGap: 12, flipAt: 100, flipGap: 14, noise: 50, type: 280 },
 };
 

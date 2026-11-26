@@ -28,7 +28,7 @@ export default function PageTransition() {
             e.stopPropagation(); // keep next/link from navigating before the cover is up
             setTarget(a.dataset.transition || href.replace(/^\//, "").replace(/_page$/, "").replace(/_/g, " ") || "home");
             setPhase("cover");
-            setTimeout(() => router.push(href), 300);
+            setTimeout(() => router.push(href), 200);
             // Fallback: if the in-app navigation stalls (slow or failed page-data fetch, stale
             // dev build, etc.), do an ordinary full page load so the overlay can never get stuck.
             clearTimeout(fallback.current);
@@ -45,18 +45,18 @@ export default function PageTransition() {
     useEffect(() => {
         if (phaseRef.current !== "cover") return;
         clearTimeout(fallback.current); // made it: no hard reload needed
-        const t1 = setTimeout(() => setPhase("reveal"), 60);
-        const t2 = setTimeout(() => setPhase("idle"), 460);
+        const t1 = setTimeout(() => setPhase("reveal"), 20);
+        const t2 = setTimeout(() => setPhase("idle"), 340);
         return () => { clearTimeout(t1); clearTimeout(t2); };
     }, [pathname]);
 
     if (phase === "idle") return null;
-    // fit the flip into the ~0.3s the cover is up, however long the name is
+    // fit the flip into the ~0.2s the cover is up, however long the name is
     const letters = target.replace(/ /g, "").length || 1;
-    const gap = Math.min(20, 150 / letters);
+    const gap = Math.min(14, 100 / letters);
     return (
         <div className={`pt-screen pt-${phase}`} aria-live="polite">
-            <GlyphWord text={target.toUpperCase()} className="pt-mark" timing={{ glyphGap: gap * 0.5, flipAt: 110, flipGap: gap, noise: 55 }} />
+            <GlyphWord text={target.toUpperCase()} className="pt-mark" timing={{ glyphGap: gap * 0.5, flipAt: 70, flipGap: gap, noise: 40 }} />
         </div>
     );
 }
