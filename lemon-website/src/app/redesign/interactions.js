@@ -41,11 +41,31 @@ export default function Interactions() {
     useEffect(() => {
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        // Every load starts at the top: the splash and entrance animations assume it, and the
-        // browser's default (restoring the old scroll spot on reload) drops you mid-page.
-        const restore = history.scrollRestoration;
-        history.scrollRestoration = "manual";
-        if (!location.hash) window.scrollTo(0, 0);
+        // Keep your place: reloads use the browser's own scroll restoration, and coming back to
+        // the homepage from a project page (in-app navigation, which would otherwise start at
+        // the top) returns to where you left it.
+        const HOME_Y = "miru.homeY", RETURNING_HOME = "miru.backHome";
+        const onHome = location.pathname === "/";
+        try {
+            if (onHome && sessionStorage.getItem(RETURNING_HOME)) {
+                sessionStorage.removeItem(RETURNING_HOME);
+                const y = Number(sessionStorage.getItem(HOME_Y)) || 0;
+                requestAnimationFrame(() => window.scrollTo(0, y));
+            }
+        } catch (e) { /* storage unavailable */ }
+        // only while actually on the homepage (leaving resets the scroll to 0 before we unmount)
+        let leaving = false;
+        const rememberHome = () => {
+            if (!onHome || leaving || location.pathname !== "/") return;
+            try { sessionStorage.setItem(HOME_Y, String(Math.round(scrollY))); } catch (e) {}
+        };
+        const markLeaving = (e) => { if (onHome && e.target.closest?.("a[href^='/']:not([href='/'])")) leaving = true; };
+        document.addEventListener("click", markLeaving, true);
+        const markBackHome = (e) => {
+            const a = e.target.closest?.("a[href='/']");
+            if (a && !onHome) { try { sessionStorage.setItem(RETURNING_HOME, "1"); } catch (err) {} }
+        };
+        document.addEventListener("click", markBackHome, true);
 
         // reveal + typewriter
         const typeOut = (el) => {
@@ -141,6 +161,7 @@ export default function Interactions() {
                     progress.textContent = `[${"█".repeat(filled)}${"░".repeat(10 - filled)}] ${String(pct).padStart(3, " ")}%`;
                 }
                 updateCards();
+                rememberHome();
                 if (!reduce && !isLite()) drifters.forEach((el) => {
                     el.style.transform = `translateX(${(scrollY * Number(el.dataset.parallax)).toFixed(1)}px)`;
                 });
@@ -200,7 +221,8 @@ export default function Interactions() {
         window.addEventListener("resize", onScroll, { passive: true });
         window.addEventListener("pointerdown", onClick);
         return () => {
-            history.scrollRestoration = restore;
+            document.removeEventListener("click", markBackHome, true);
+            document.removeEventListener("click", markLeaving, true);
             clearTimeout(firstSample);
             stopSamples.forEach((stop) => stop());
             window.removeEventListener("scroll", sampleOnScroll);
