@@ -10,42 +10,42 @@ const yt = (id) => `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 
 const PROJECTS = [
     {
-        title: "Estuary", glyph: "◉", sub: "AR Companion Project", href: "/estuary_page", tag: "XR · AI", color: "rd-glow-green", img: yt("GzsNL7DX1Fc"),
+        title: "Estuary", glyph: "◉", sub: "AR Companion Project", href: "/estuary_page", tag: "XR · AI", img: yt("GzsNL7DX1Fc"),
         blurb: "Framework for low-latency, multimodal socially interactive agents on Quest 3 and Apple Vision Pro.",
         links: [["Website", "https://estuary-ai.github.io/"], ["Demo", "https://www.youtube.com/watch?v=m5wO7E0zet8"], ["CHI'25 Interviews", "https://youtu.be/2RlmenU1FG4?feature=shared"]],
     },
     {
-        title: "Memory Space", glyph: "⌂", sub: "Chinatown AR", href: "/memory_space_page", tag: "WebAR", color: "rd-glow-pink", legend: "AR",
+        title: "Memory Space", glyph: "⌂", sub: "Chinatown AR", href: "/memory_space_page", tag: "WebAR", legend: "AR",
         // thumbnail of the Vimeo reel (via Vimeo oEmbed)
         img: "https://i.vimeocdn.com/video/1864924480-8b0a613befcdc5833d8fc1ced9a4998458bcb018adf5bcc922f2c4661ea75044-d_1280?region=us",
         blurb: "Geolocated WebAR exhibit on Niantic's 8th Wall at LA's Union Station, showcasing old Chinatown.",
         links: [["WebAR", "https://storymaps.arcgis.com/collections/1e5f963472f4400da19fcb0e3ccfdd5e?item=1"], ["Lab", "https://mobilemedia.usc.edu/projects/memory-space-chinatownar/"], ["Grand Prize", "https://www.8thwall.com/blog/post/163144919365/meet-the-winners-time-capsule-challenge"]],
     },
     {
-        title: "NASA SUITS", glyph: "✦", sub: "2022–2023", href: "/nasa_suits_page", tag: "XR", color: "rd-glow-blue", img: yt("d4mOWeIuvMI"),
+        title: "NASA SUITS", glyph: "✦", sub: "2022–2023", href: "/nasa_suits_page", tag: "XR", img: yt("d4mOWeIuvMI"),
         blurb: "HoloLens 2 AR app helping astronauts with navigation, terrain mapping, and telemetry in low light. Evolved into Estuary.",
         links: [["USC Article", "https://viterbischool.usc.edu/news/2023/06/usc-students-advance-augmented-reality-for-artemis-astronauts/"], ["2022 Video", "https://www.youtube.com/watch?v=Wjg_yvT7Jo4"]],
     },
     {
-        title: "Trajectory Improvement", glyph: "⟳", sub: "Comparative Language Feedback", href: "/robo_traj_page", tag: "Robotics · Research", color: "rd-glow-amber", img: yt("8xyuCQlTXEg"),
+        title: "Trajectory Improvement", glyph: "⟳", sub: "Comparative Language Feedback", href: "/robo_traj_page", tag: "Robotics · Research", img: yt("8xyuCQlTXEg"),
         blurb: "Improving a robot arm's (WidowX) trajectory from comparative feedback in natural language.",
         links: [["Website", "https://liralab.usc.edu/comparative-language-feedback/"], ["CoRL'24", "https://arxiv.org/abs/2410.06401v1"], ["HIRL'24", "https://people.eecs.berkeley.edu/~russell/papers/russell-hri24-hirl-feedback.pdf"]],
     },
 ];
 const SIDE_QUESTS = [
-    { title: "Halfthought", glyph: "✎", href: "/halfthought_page", tag: "App", color: "rd-glow-soft", legend: "Ht", blurb: "A public notes app with discovery for publishing short writing.", links: [["Website", "https://halfthought.app/welcome"]] },
-    { title: "Sidetrekd", glyph: "⚑", href: "/sidetrekd_page", tag: "App", color: "rd-glow-green", legend: "St", blurb: "Track sidequest ideas, share them with friends, journal the ones you did.", links: [["Website", "https://sidetrekd.app"]] },
-    { title: "Cringe Canon", glyph: "☻", href: "/cringe_canon_page", tag: "AI · Hackathon", color: "rd-glow-pink", img: yt("BPxekdd8YyU"), blurb: "Turns original-character art into canon profiles you can chat with.", links: [["GitHub", "https://github.com/lemonlemonde/cringe-canon"], ["Hackathon", "https://www.sprint.dev/projects/d6a91375-f6b5-4637-b149-eb9a07634730"]] },
-    { title: "Sketch Artist", glyph: "✿", href: "/sketch_artist_page", tag: "AI", color: "rd-glow-amber", img: "/redmask_1.png", blurb: "Local image generation and in-painting pipeline on a Jetson Orin Nano.", links: [["GitHub", "https://github.com/lemonlemonde/sketch-artist"]] },
-    { title: "QueueTify", glyph: "♫", href: "/queuetify_page", tag: "Backend", color: "rd-glow-blue", img: "/queuetify_overview.jpg", blurb: "Playlist name generator on an async task queue, powered by local Llama 3.2.", links: [["GitHub", "https://github.com/lemonlemonde/QueueTify"]] },
-    { title: "To The Clouds", glyph: "☁", href: "/totheclouds_page", tag: "Film · VR", color: "rd-glow-soft", img: yt("B9d9BBz_8V8"), blurb: "360° VR short film made in Maya, for viewing on Quest 2.", links: [] },
+    { title: "Halfthought", glyph: "✎", href: "/halfthought_page", tag: "App", legend: "Ht", blurb: "A public notes app with discovery for publishing short writing.", links: [["Website", "https://halfthought.app/welcome"]] },
+    { title: "Sidetrekd", glyph: "⚑", href: "/sidetrekd_page", tag: "App", legend: "St", blurb: "Track sidequest ideas, share them with friends, journal the ones you did.", links: [["Website", "https://sidetrekd.app"]] },
+    { title: "Cringe Canon", glyph: "☻", href: "/cringe_canon_page", tag: "AI · Hackathon", img: yt("BPxekdd8YyU"), blurb: "Turns original-character art into canon profiles you can chat with.", links: [["GitHub", "https://github.com/lemonlemonde/cringe-canon"], ["Hackathon", "https://www.sprint.dev/projects/d6a91375-f6b5-4637-b149-eb9a07634730"]] },
+    { title: "Sketch Artist", glyph: "✿", href: "/sketch_artist_page", tag: "AI", img: "/redmask_1.png", blurb: "Local image generation and in-painting pipeline on a Jetson Orin Nano.", links: [["GitHub", "https://github.com/lemonlemonde/sketch-artist"]] },
+    { title: "QueueTify", glyph: "♫", href: "/queuetify_page", tag: "Backend", img: "/queuetify_overview.jpg", blurb: "Playlist name generator on an async task queue, powered by local Llama 3.2.", links: [["GitHub", "https://github.com/lemonlemonde/QueueTify"]] },
+    { title: "To The Clouds", glyph: "☁", href: "/totheclouds_page", tag: "Film · VR", img: yt("B9d9BBz_8V8"), blurb: "360° VR short film made in Maya, for viewing on Quest 2.", links: [] },
 ];
 const PUBS = [
-    { venue: "CHI '25", color: "rd-glow-green", title: "Optimizing SIA Development: A Case Study in User-Centered Design for Estuary, a Multimodal Socially Interactive Agent Framework", authors: ["S. Lin", "M. Jun*", "B. Rizk*", "K. Shieh", "S. Fisher", "S. Mozgai"], links: [["arXiv", "https://arxiv.org/abs/2504.14427"], ["Video", "https://youtu.be/2RlmenU1FG4?feature=shared"]] },
-    { venue: "IVA '24", color: "rd-glow-pink", title: "Estuary: A Framework For Building Multimodal Low-Latency Real-Time Socially Interactive Agents", authors: ["S. Lin*", "B. Rizk*", "M. Jun*", "A. Artze", "C. Sullivan", "S. Mozgai", "S. Fisher"], links: [["arXiv", "https://arxiv.org/abs/2410.20116"], ["Website", "https://estuary-ai.github.io/"]] },
-    { venue: "CoRL '24", color: "rd-glow-amber", title: "Trajectory Improvement and Reward Learning from Comparative Language Feedback", authors: ["Z. Yang", "M. Jun", "J. Tien", "S. J. Russell", "A. Dragan", "E. Bıyık"], links: [["arXiv", "https://arxiv.org/abs/2410.06401v1"], ["Website", "https://liralab.usc.edu/comparative-language-feedback/"], ["Video", "https://www.youtube.com/watch?v=8xyuCQlTXEg"]] },
-    { venue: "HRI '24 W", color: "rd-glow-blue", title: "Optimizing Robot Behavior Via Comparative Language Feedback", authors: ["J. Tien*", "Z. Yang*", "M. Jun", "S. J. Russell", "A. Dragan", "E. Bıyık"], links: [["Paper", "https://people.eecs.berkeley.edu/~russell/papers/russell-hri24-hirl-feedback.pdf"], ["Video", "https://www.youtube.com/watch?v=W-ZJ1ijPf8U"]] },
-    { venue: "RAMS '24", color: "rd-glow-soft", title: "Do Bayesian Neural Networks Improve Weapon System Predictive Maintenance?", authors: ["M. Potter*", "M. Jun*"], links: [["arXiv", "https://arxiv.org/abs/2312.10494"]] },
+    { venue: "CHI '25", title: "Optimizing SIA Development: A Case Study in User-Centered Design for Estuary, a Multimodal Socially Interactive Agent Framework", authors: ["S. Lin", "M. Jun*", "B. Rizk*", "K. Shieh", "S. Fisher", "S. Mozgai"], links: [["arXiv", "https://arxiv.org/abs/2504.14427"], ["Video", "https://youtu.be/2RlmenU1FG4?feature=shared"]] },
+    { venue: "IVA '24", title: "Estuary: A Framework For Building Multimodal Low-Latency Real-Time Socially Interactive Agents", authors: ["S. Lin*", "B. Rizk*", "M. Jun*", "A. Artze", "C. Sullivan", "S. Mozgai", "S. Fisher"], links: [["arXiv", "https://arxiv.org/abs/2410.20116"], ["Website", "https://estuary-ai.github.io/"]] },
+    { venue: "CoRL '24", title: "Trajectory Improvement and Reward Learning from Comparative Language Feedback", authors: ["Z. Yang", "M. Jun", "J. Tien", "S. J. Russell", "A. Dragan", "E. Bıyık"], links: [["arXiv", "https://arxiv.org/abs/2410.06401v1"], ["Website", "https://liralab.usc.edu/comparative-language-feedback/"], ["Video", "https://www.youtube.com/watch?v=8xyuCQlTXEg"]] },
+    { venue: "HRI '24 W", title: "Optimizing Robot Behavior Via Comparative Language Feedback", authors: ["J. Tien*", "Z. Yang*", "M. Jun", "S. J. Russell", "A. Dragan", "E. Bıyık"], links: [["Paper", "https://people.eecs.berkeley.edu/~russell/papers/russell-hri24-hirl-feedback.pdf"], ["Video", "https://www.youtube.com/watch?v=W-ZJ1ijPf8U"]] },
+    { venue: "RAMS '24", title: "Do Bayesian Neural Networks Improve Weapon System Predictive Maintenance?", authors: ["M. Potter*", "M. Jun*"], links: [["arXiv", "https://arxiv.org/abs/2312.10494"]] },
 ];
 
 function Command({ id, children, note }) {
@@ -115,8 +115,10 @@ export default function HomePage() {
                         </div>
                     </div>
                     <div className="t-cell p-3 flex flex-col justify-center" data-landing="1" id="t-portrait-cell">
-                        <AsciiPortrait src="/portrait_840.jpg" alt="Portrait of Miru Jun"
-                            hoverSrc="/cow_portrait_840.jpg" hoverAlt="Miru Jun next to a giant cow statue" />
+                        <div className="t-portrait-frame">
+                            <AsciiPortrait src="/portrait_840.jpg" alt="Portrait of Miru Jun"
+                                hoverSrc="/cow_portrait_840.jpg" hoverAlt="Miru Jun next to a giant cow statue" />
+                        </div>
                     </div>
                 </section>
 

@@ -95,6 +95,16 @@
 
 /* ---------- ASCII portrait ---------- */
 .t-portrait { position: relative; margin: 0; width: 100%; background: var(--cream); overflow: hidden; }
+/* stacked (narrow) layout: framed and capped at about twice the width of the "Miru Jun"
+   header (which is ~4em of the header's font size, clamp(2.8rem,6.4vw,5.2rem)) */
+.t-portrait-frame {
+  width: 100%;
+  max-width: calc(clamp(2.8rem, 6.4vw, 5.2rem) * 8);
+  margin-inline: auto;
+  padding: 8px;
+  border: 1px solid var(--line);
+}
+@media (min-width: 1024px) { .t-portrait-frame { max-width: none; padding: 0; border: 0; } }
 .t-ascii {
   margin: 0;
   line-height: 1;

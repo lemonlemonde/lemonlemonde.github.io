@@ -41,14 +41,21 @@ export default function PageTransition() {
         return () => document.removeEventListener("click", onClick, true);
     }, [router]);
 
-    // new route is in: hold a beat, then reveal it
+    // new route is in: reveal it once it has actually been drawn (two frames from now), so
+    // the wipe isn't fighting the new page's first layout and paint
     useEffect(() => {
         if (phaseRef.current !== "cover") return;
         clearTimeout(fallback.current); // made it: no hard reload needed
-        const t1 = setTimeout(() => setPhase("reveal"), 20);
-        const t2 = setTimeout(() => setPhase("idle"), 340);
-        return () => { clearTimeout(t1); clearTimeout(t2); };
+        let raf = requestAnimationFrame(() => {
+            raf = requestAnimationFrame(() => setPhase("reveal"));
+        });
+        return () => cancelAnimationFrame(raf);
     }, [pathname]);
+    useEffect(() => {
+        if (phase !== "reveal") return;
+        const t = setTimeout(() => setPhase("idle"), 320);
+        return () => clearTimeout(t);
+    }, [phase]);
 
     if (phase === "idle") return null;
     // fit the flip into the ~0.2s the cover is up, however long the name is

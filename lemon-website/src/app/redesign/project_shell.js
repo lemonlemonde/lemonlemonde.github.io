@@ -14,13 +14,13 @@ export function MenuBar({ onHome = false }) {
     const at = (hash) => (onHome ? hash : `/${hash}`);
     return (
         <nav className="t-grid grid grid-cols-[auto_1fr_auto] lg:grid-cols-[auto_1fr_auto_auto] sticky top-0 z-30 bg-[var(--cream)] text-[0.8rem]">
-            {onHome
-                ? <a href="#top" className="t-cell t-hot px-4 py-3 font-bold">MIRU.SH</a>
-                : <Link href={HOME} className="t-cell t-hot px-4 py-3 font-bold">MIRU.SH</Link>}
+            {/* router links, even for "#..." jumps: plain hash links make history entries the
+                router can't restore, so Back from a project page would leave it on screen */}
+            <Link href={onHome ? "#top" : HOME} className="t-cell t-hot px-4 py-3 font-bold">MIRU.SH</Link>
             <span className="t-cell px-4 py-3 flex gap-4 sm:gap-6 overflow-x-auto whitespace-nowrap">
-                <a className="t-link" href={at("#projects")}>projects</a>
-                <a className="t-link" href={at("#side-quests")}>side-quests</a>
-                <a className="t-link" href={at("#pubs")}>pubs</a>
+                <Link className="t-link" href={at("#projects")}>projects</Link>
+                <Link className="t-link" href={at("#side-quests")}>side-quests</Link>
+                <Link className="t-link" href={at("#pubs")}>pubs</Link>
             </span>
             <span className="t-cell px-4 py-3 t-muted hidden lg:flex gap-4 whitespace-pre" aria-hidden>
                 <span id="t-progress">[░░░░░░░░░░]   0%</span>

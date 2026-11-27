@@ -1,7 +1,7 @@
-import { Geist, Geist_Mono, Tilt_Neon } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { pageMetadata } from "./page_metadata";
-// redesign prototype: page-to-page splash (only for links marked data-transition)
+// page-to-page splash (only for links marked data-transition)
 import PageTransition from "./redesign/page_transition";
 
 const geistSans = Geist({
@@ -11,11 +11,6 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const tiltNeon = Tilt_Neon({
-  variable: "--font-neon",
   subsets: ["latin"],
 });
 
@@ -30,7 +25,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${tiltNeon.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
         <PageTransition />

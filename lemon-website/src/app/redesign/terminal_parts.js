@@ -194,7 +194,7 @@ function precomputedColours(src, cols, rows) {
 
 const loadImage = (src) => new Promise((resolve, reject) => {
     const img = new Image();
-    img.onload = () => resolve(img);
+    img.onload = () => (img.decode ? img.decode().catch(() => {}) : Promise.resolve()).then(() => resolve(img));
     img.onerror = reject;
     img.src = src;
 });
@@ -263,10 +263,12 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
     const [cowReady, setCowReady] = useState(false);
     const lastPointer = useRef("mouse");
 
-    // size the canvas to the frame and work out the cell grid
+    // size the canvas to the frame and work out the cell grid (only re-allocates on resize)
     const setupCanvas = () => {
         const dpr = window.devicePixelRatio || 1;
         const W = wrap.current.clientWidth, H = wrap.current.clientHeight;
+        const g = run.current.grid;
+        if (g && g.W === W && g.H === H && g.dpr === dpr) return g;
         const cv = canvas.current;
         cv.width = Math.round(W * dpr);
         cv.height = Math.round(H * dpr);
@@ -275,10 +277,11 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
         const cw = W / cols;
         const rows = Math.max(1, Math.round(H / (cw / 0.6))); // mono chars are ~0.6 as wide as tall
         // (for the square frame this is PRECOMPUTED.rows, so the precomputed colours line up)
-        run.current.grid = { ctx, W, H, cw, rows, ch: H / rows };
+        run.current.frames = {};
+        run.current.grid = { ctx, W, H, dpr, cw, rows, ch: H / rows };
         return run.current.grid;
     };
-    // colours (instant when precomputed) + the image itself (needed only for the pixel stage)
+    // colours (instant when precomputed) + the image itself (needed only for the photo stage)
     const colours = (which) => {
         const key = which === "hover" ? hoverSrc : src;
         const { cache, grid } = run.current;
@@ -295,8 +298,53 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
         return cache[key];
     };
 
-    // Animate every cell through the given stages, in a random order, then reveal `target`.
-    const animateCells = (stages, { total, lag }, target, finish) => {
+    // Each stage ("ascii" | "block" | "photo") of each picture is rendered once, whole, into
+    // an offscreen canvas; animating then just copies cells across (cheap, no per-cell text).
+    const frame = (kind, which, { img, px }) => {
+        const { frames, grid: { W, H, dpr, cw, ch, rows } } = run.current;
+        const key = kind + ":" + which;
+        if (frames[key]) return frames[key];
+        const c = document.createElement("canvas");
+        c.width = Math.round(W * dpr);
+        c.height = Math.round(H * dpr);
+        const x = c.getContext("2d");
+        x.setTransform(dpr, 0, 0, dpr, 0, 0);
+        if (kind === "photo") x.drawImage(img, 0, 0, W, H);
+        else if (kind === "block") {
+            const t = document.createElement("canvas");
+            t.width = cols;
+            t.height = rows;
+            t.getContext("2d").putImageData(new ImageData(new Uint8ClampedArray(px), cols, rows), 0, 0);
+            x.imageSmoothingEnabled = false;
+            x.drawImage(t, 0, 0, W, H);
+        } else {
+            x.fillStyle = "#f7f5ec";
+            x.fillRect(0, 0, W, H);
+            x.fillStyle = "#1b1b19";
+            x.font = `${ch}px ui-monospace, monospace`;
+            x.textBaseline = "top";
+            for (let k = 0; k < cols * rows; k++) {
+                const i = k * 4;
+                const lum = (0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]) / 255;
+                x.fillText(ASCII_RAMP[Math.min(ASCII_RAMP.length - 1, Math.floor(lum * ASCII_RAMP.length))], (k % cols) * cw, ((k / cols) | 0) * ch);
+            }
+        }
+        return (frames[key] = c);
+    };
+    // copy just these cells of a pre-rendered frame onto the visible canvas (one draw call)
+    const blit = (from, cells) => {
+        const { ctx, W, H, cw, ch } = run.current.grid;
+        ctx.save();
+        ctx.beginPath();
+        for (const k of cells) ctx.rect((k % cols) * cw, ((k / cols) | 0) * ch, cw + 0.5, ch + 0.5);
+        ctx.clip();
+        ctx.drawImage(from, 0, 0, W, H);
+        ctx.restore();
+    };
+    const paintAll = (from) => { const { ctx, W, H } = run.current.grid; ctx.drawImage(from, 0, 0, W, H); };
+
+    // Animate every cell through the given stage frames, in a random order, then reveal `target`.
+    const animateCells = (stages, { total, lag }, target) => {
         const { rows } = run.current.grid;
         const order = shuffled(cols * rows);
         const done = new Array(stages.length).fill(0);
@@ -307,41 +355,14 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
             const t = now - t0;
             stages.forEach((stage, k) => {
                 const want = isLite() ? order.length : Math.floor(ease((t - k * lag) / total) * order.length);
-                while (done[k] < want) stage(order[done[k]++]);
+                if (done[k] < want) { blit(stage, order.slice(done[k], want)); done[k] = want; }
             });
             if (done[stages.length - 1] < order.length) { run.current.raf = requestAnimationFrame(tick); return; }
-            finish();                                 // exact full frame == the <img> underneath
+            paintAll(stages[stages.length - 1]);      // exact full frame == the <img> underneath
             setShowing(target);                       // so revealing it is invisible
             run.current.raf = requestAnimationFrame(() => setCanvasOn(false));
         };
         run.current.raf = requestAnimationFrame(tick);
-    };
-
-    // cell painters
-    const painters = ({ img, px }) => {
-        const { ctx, cw, ch, rows } = run.current.grid;
-        const sx = img.width / cols, sy = img.height / rows;
-        const xy = (k) => [k % cols, (k / cols) | 0];
-        return {
-            ascii: (k) => {
-                const [x, y] = xy(k), i = k * 4;
-                const lum = (0.299 * px[i] + 0.587 * px[i + 1] + 0.114 * px[i + 2]) / 255;
-                ctx.fillStyle = "#f7f5ec";
-                ctx.fillRect(x * cw, y * ch, cw + 0.5, ch + 0.5);
-                ctx.fillStyle = "#1b1b19";
-                ctx.fillText(ASCII_RAMP[Math.min(ASCII_RAMP.length - 1, Math.floor(lum * ASCII_RAMP.length))], x * cw, y * ch);
-            },
-            block: (k) => {
-                const [x, y] = xy(k), i = k * 4;
-                ctx.fillStyle = `rgb(${px[i]},${px[i + 1]},${px[i + 2]})`;
-                ctx.fillRect(x * cw, y * ch, cw + 0.5, ch + 0.5);
-            },
-            pixels: (k) => {
-                const [x, y] = xy(k);
-                ctx.drawImage(img, x * sx, y * sy, sx, sy, x * cw, y * ch, cw + 0.5, ch + 0.5);
-            },
-            full: () => ctx.drawImage(img, 0, 0, run.current.grid.W, run.current.grid.H),
-        };
     };
 
     // first load: ASCII -> colour blocks -> pixels
@@ -353,23 +374,16 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
         const timer = { id: 0 };
         setupCanvas();
         // draw the ASCII stage straight away from the precomputed colours (no download wait)
-        const drawAscii = (px) => {
-            const { ctx, ch } = run.current.grid;
-            const p = painters({ img: { width: 1, height: 1 }, px });
-            ctx.font = `${ch}px ui-monospace, monospace`;
-            ctx.textBaseline = "top";
-            for (let k = 0; k < cols * run.current.grid.rows; k++) p.ascii(k);
-        };
         const pre = !reduce && !isLite() && colours("main");
-        if (pre) drawAscii(pre);
+        if (pre) paintAll(frame("ascii", "main", { px: pre }));
         sampled("main").then((data) => {
             if (cancelled) return;
             if (reduce || isLite()) { setShowing("main"); setCanvasOn(false); return; }
-            if (!pre) drawAscii(data.px);
-            const p = painters(data);
+            if (!pre) paintAll(frame("ascii", "main", data));
+            const stages = [frame("block", "main", data), frame("photo", "main", data)];
             const start = startDelay ?? splashTiming().exit + 50; // just as the splash starts to wipe away
             timer.id = setTimeout(() => {
-                animateCells([p.block, p.pixels], { total: 450, lag: 80 }, "main", p.full);
+                animateCells(stages, { total: 450, lag: 80 }, "main");
             }, Math.max(0, start - (performance.now() - mountedAt)));
         });
         return () => { cancelled = true; clearTimeout(timer.id); cancelAnimationFrame(state.raf); };
@@ -378,7 +392,16 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
     // the cow appears once the portrait is in and the whole page has finished loading
     useEffect(() => {
         if (!hoverSrc || showing !== "main" || cowReady) return;
-        const show = () => setTimeout(() => setCowReady(true), 400);
+        const show = () => setTimeout(() => {
+            setCowReady(true);
+            // render the morph frames ahead of the first hover, while the page is idle
+            const idle = window.requestIdleCallback || ((f) => setTimeout(f, 200));
+            Promise.all([sampled("main"), sampled("hover")]).then(([m, h]) => idle(() => {
+                if (!run.current.grid) return;
+                frame("photo", "main", m); frame("ascii", "main", m);
+                frame("photo", "hover", h); frame("ascii", "hover", h);
+            }));
+        }, 400);
         if (document.readyState === "complete") { const t = show(); return () => clearTimeout(t); }
         window.addEventListener("load", show, { once: true });
         return () => window.removeEventListener("load", show);
@@ -390,19 +413,14 @@ export function AsciiPortrait({ src, alt, hoverSrc, hoverAlt, ratio = 1, cols = 
         const instant = window.matchMedia("(prefers-reduced-motion: reduce)").matches || isLite();
         const data = await sampled(target);
         if (instant) { setShowing(target); return; }
-        const wasIdle = !canvasOn;
-        if (wasIdle) {
+        if (!canvasOn) {
             // start the overlay from the photo currently on show
             const from = await sampled(showing);
             setupCanvas();
-            painters(from).full();
+            paintAll(frame("photo", showing, from));
         }
-        const { ctx, ch } = run.current.grid;
-        ctx.font = `${ch}px ui-monospace, monospace`;
-        ctx.textBaseline = "top";
         setCanvasOn(true);
-        const p = painters(data);
-        animateCells([p.ascii, p.pixels], { total: 150, lag: 50 }, target, p.full);
+        animateCells([frame("ascii", target, data), frame("photo", target, data)], { total: 150, lag: 50 }, target);
     };
 
     return (

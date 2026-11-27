@@ -41,31 +41,25 @@ export default function Interactions() {
     useEffect(() => {
         const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        // Keep your place: reloads use the browser's own scroll restoration, and coming back to
-        // the homepage from a project page (in-app navigation, which would otherwise start at
-        // the top) returns to where you left it.
-        const HOME_Y = "miru.homeY", RETURNING_HOME = "miru.backHome";
+        // "← back" / "MIRU.SH" on a project page opened from the homepage go back in history
+        // instead of loading the homepage afresh, so the browser returns you to where you were.
+        const FROM_HOME = "miru.fromHome"; // the project page the homepage last opened
         const onHome = location.pathname === "/";
-        try {
-            if (onHome && sessionStorage.getItem(RETURNING_HOME)) {
-                sessionStorage.removeItem(RETURNING_HOME);
-                const y = Number(sessionStorage.getItem(HOME_Y)) || 0;
-                requestAnimationFrame(() => window.scrollTo(0, y));
-            }
-        } catch (e) { /* storage unavailable */ }
-        // only while actually on the homepage (leaving resets the scroll to 0 before we unmount)
-        let leaving = false;
-        const rememberHome = () => {
-            if (!onHome || leaving || location.pathname !== "/") return;
-            try { sessionStorage.setItem(HOME_Y, String(Math.round(scrollY))); } catch (e) {}
+        try { if (onHome) sessionStorage.removeItem(FROM_HOME); } catch (e) { /* storage unavailable */ }
+        const onLinkClick = (e) => {
+            const a = e.target.closest?.("a[href^='/']");
+            if (!a || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+            const href = a.getAttribute("href");
+            try {
+                if (onHome && !href.startsWith("/#") && href !== "/") sessionStorage.setItem(FROM_HOME, href);
+                else if (!onHome && href === "/" && sessionStorage.getItem(FROM_HOME) === location.pathname) {
+                    e.preventDefault();
+                    e.stopPropagation(); // keep next/link from pushing a new homepage entry
+                    history.back();
+                }
+            } catch (err) { /* storage unavailable: plain navigation */ }
         };
-        const markLeaving = (e) => { if (onHome && e.target.closest?.("a[href^='/']:not([href='/'])")) leaving = true; };
-        document.addEventListener("click", markLeaving, true);
-        const markBackHome = (e) => {
-            const a = e.target.closest?.("a[href='/']");
-            if (a && !onHome) { try { sessionStorage.setItem(RETURNING_HOME, "1"); } catch (err) {} }
-        };
-        document.addEventListener("click", markBackHome, true);
+        document.addEventListener("click", onLinkClick, true);
 
         // reveal + typewriter
         const typeOut = (el) => {
@@ -107,9 +101,15 @@ export default function Interactions() {
         const updateCards = () => {
             const vh = innerHeight;
             const lite = isLite();
+            // measure everything first, then write: measuring after a style write forces the
+            // browser to recalculate styles on the spot, once per card, every frame
+            const seen = [];
             cards.forEach((el) => {
                 const r = el.getBoundingClientRect();
                 if (r.bottom < -50 || r.top > vh + 50) return;
+                seen.push([el, r, lite ? [] : info.get(el).media.map((m) => m.getBoundingClientRect())]);
+            });
+            seen.forEach(([el, r, mediaRects]) => {
                 const { tilt, still, media, last } = info.get(el);
                 // where the card sits on screen (1 = bottom edge, 0 = top edge). Entering is judged by
                 // its top part and leaving by its bottom part, so blocks taller than the screen stay
@@ -133,7 +133,7 @@ export default function Interactions() {
                 // media colour: each image/video is full colour at the middle of the screen, fading to
                 // greyscale away from it (judged by its own middle). Lite mode skips the filter entirely.
                 if (!lite) media.forEach((m, i) => {
-                    const mr = m.getBoundingClientRect();
+                    const mr = mediaRects[i];
                     const mc = (mr.top + mr.height / 2) / vh;
                     write(m, last, "c" + i, (1 - clamp01((Math.abs(mc - 0.5) - 0.08) / 0.27)).toFixed(1),
                         (v) => m.style.setProperty("--color", v));
@@ -161,7 +161,6 @@ export default function Interactions() {
                     progress.textContent = `[${"█".repeat(filled)}${"░".repeat(10 - filled)}] ${String(pct).padStart(3, " ")}%`;
                 }
                 updateCards();
-                rememberHome();
                 if (!reduce && !isLite()) drifters.forEach((el) => {
                     el.style.transform = `translateX(${(scrollY * Number(el.dataset.parallax)).toFixed(1)}px)`;
                 });
@@ -180,6 +179,21 @@ export default function Interactions() {
         const loadTimers = reduce ? [] : [...document.querySelectorAll("[data-landing]")].map((el) =>
             setTimeout(() => land(el), SPLASH_CLEARS + Number(el.dataset.landing) * 180)
         );
+
+        // The burst/sparkle symbols aren't in the site fonts, and the browser's first lookup of
+        // a fallback font for them stalls a frame for ~40ms (on a fast machine). Do that lookup
+        // while idle instead of on the first click (which is often a click into a project).
+        const idle = window.requestIdleCallback || ((f) => setTimeout(f, 300));
+        const warm = idle(() => {
+            const w = document.createElement("span");
+            w.className = "t-burst";
+            w.style.visibility = "hidden";
+            w.style.animation = "none";
+            w.textContent = BURST.join("") + SPARKS.join("");
+            document.body.appendChild(w);
+            void w.offsetWidth;
+            w.remove();
+        });
 
         // click burst
         const onClick = (e) => {
@@ -221,9 +235,9 @@ export default function Interactions() {
         window.addEventListener("resize", onScroll, { passive: true });
         window.addEventListener("pointerdown", onClick);
         return () => {
-            document.removeEventListener("click", markBackHome, true);
-            document.removeEventListener("click", markLeaving, true);
+            document.removeEventListener("click", onLinkClick, true);
             clearTimeout(firstSample);
+            (window.cancelIdleCallback || clearTimeout)(warm);
             stopSamples.forEach((stop) => stop());
             window.removeEventListener("scroll", sampleOnScroll);
             window.removeEventListener("t-lite", onLite);
